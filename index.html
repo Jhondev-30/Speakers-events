@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaker Resources — SpeakUp Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink-900:    #0d1410;
+    --ink-800:    #161e18;
+    --ink-700:    #2a322a;
+    --paper-50:   #f6efde;
+    --paper-100:  #e8dcc0;
+    --gold-500:   #c9a14a;
+    --gold-400:   #d4b466;
+    --copper-500: #b87333;
+    --terracotta: #c47a5a;
+    --rust-700:   #8b4a2b;
+    --sage:       #6b8e5a;
+    --sage-soft:  #8aab78;
+    --terra-soft: #d4a18a;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--ink-900);
+    color: var(--paper-50);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url('./imgs/paper-texture.jpg');
+    background-size: 800px;
+    opacity: 0.025;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+  h1,h2,h3,h4 { font-family: 'Fraunces', serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
+  .mono { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--gold-500); color: var(--ink-900); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 1.5rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    background: rgba(13, 20, 16, 0.6);
+    border-bottom: 1px solid rgba(201, 161, 74, 0.12);
+  }
+  .nav-brand { font-family: 'Fraunces', serif; font-size: 1.25rem; letter-spacing: -0.02em; }
+  .nav-brand span { color: var(--gold-500); }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; }
+  .nav-links a { color: var(--paper-100); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold-400); }
+  .nav-cta-mini {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--paper-50);
+    border: 1px solid rgba(201, 161, 74, 0.3);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+  .nav-cta-mini:hover { border-color: var(--gold-500); background: rgba(201, 161, 74, 0.05); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2.5rem 5rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('./imgs/hero.jpg') center/cover no-repeat;
+    filter: brightness(0.4) contrast(1.1) sepia(0.15);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(13,20,16,0.4) 0%, rgba(13,20,16,0.7) 50%, var(--ink-900) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 1440px; margin: 0 auto; width: 100%; }
+  .hero-meta {
+    display: flex; gap: 2rem; align-items: center;
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-meta-line { width: 60px; height: 1px; background: var(--gold-500); }
+  .hero h1 {
+    font-size: clamp(4rem, 12vw, 11rem);
+    line-height: 0.9;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    opacity: 0; animation: fadeUp 1s 0.4s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-400); font-weight: 300; }
+  .hero h1 .stroke { -webkit-text-stroke: 1.5px var(--paper-50); color: transparent; }
+  .hero-sub {
+    max-width: 720px;
+    font-size: 1.125rem;
+    color: var(--paper-100);
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 1s 0.6s forwards;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(201, 161, 74, 0.2);
+    max-width: 1000px;
+    opacity: 0; animation: fadeUp 1s 0.8s forwards;
+  }
+  .hero-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    color: var(--gold-400);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .hero-stat-label { font-size: 0.8125rem; color: var(--paper-100); line-height: 1.3; }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 2; opacity: 0; animation: fadeUp 1s 1.2s forwards;
+  }
+  .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(180deg, var(--gold-500), transparent); margin: 0 auto; }
+  .hero-scroll-text { font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; letter-spacing: 0.2em; color: var(--gold-500); margin-top: 0.5rem; }
+
+  /* SECTIONS */
+  section { position: relative; padding: 7rem 2.5rem; }
+  .container { max-width: 1440px; margin: 0 auto; }
+  .section-label {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .section-label-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold-500);
+    letter-spacing: 0.2em;
+  }
+  .section-label-line { width: 60px; height: 1px; background: var(--gold-500); }
+  .section-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    margin-bottom: 2rem;
+    line-height: 0.95;
+  }
+  .section-title em { font-style: italic; color: var(--gold-400); }
+  .section-intro { color: var(--paper-100); max-width: 720px; line-height: 1.6; font-size: 1.0625rem; }
+
+  /* LEGEND */
+  .legend { background: var(--ink-800); }
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .legend-item {
+    background: var(--ink-900);
+    border: 1px solid rgba(201, 161, 74, 0.12);
+    padding: 1.75rem;
+    border-radius: 4px;
+  }
+  .legend-item-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    color: var(--paper-50);
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .legend-item-desc { font-size: 0.9375rem; color: var(--paper-100); line-height: 1.5; }
+
+  /* BADGES */
+  .badge {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .badge-out { background: rgba(180, 140, 80, 0.15); color: var(--gold-400); border: 1px solid rgba(201, 161, 74, 0.25); }
+  .badge-in { background: rgba(138, 171, 120, 0.12); color: var(--sage-soft); border: 1px solid rgba(138, 171, 120, 0.25); }
+  .badge-pod { background: rgba(196, 122, 90, 0.12); color: var(--terra-soft); border: 1px solid rgba(196, 122, 90, 0.25); }
+  .badge-net { background: rgba(180, 140, 80, 0.1); color: var(--paper-100); border: 1px solid rgba(201, 161, 74, 0.15); }
+  .badge-free { background: rgba(138, 171, 120, 0.12); color: var(--sage-soft); border: 1px solid rgba(138, 171, 120, 0.3); }
+  .badge-freemium { background: rgba(201, 161, 74, 0.12); color: var(--gold-400); border: 1px solid rgba(201, 161, 74, 0.3); }
+  .badge-paid { background: rgba(196, 122, 90, 0.15); color: var(--terracotta); border: 1px solid rgba(196, 122, 90, 0.3); }
+  .badge-full { background: rgba(139, 74, 43, 0.18); color: var(--rust-700); border: 1px solid rgba(139, 74, 43, 0.35); }
+  .badge-pay-high { background: rgba(196, 122, 90, 0.18); color: var(--terracotta); border: 1px solid rgba(196, 122, 90, 0.4); }
+  .badge-pay-med { background: rgba(201, 161, 74, 0.15); color: var(--gold-400); border: 1px solid rgba(201, 161, 74, 0.3); }
+  .badge-pay-free { background: rgba(120, 130, 120, 0.12); color: var(--paper-100); border: 1px solid rgba(201, 161, 74, 0.15); }
+
+  /* ROSTER */
+  .roster { background: var(--ink-800); }
+  .roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .speaker-card {
+    background: var(--ink-900);
+    border: 1px solid rgba(201, 161, 74, 0.1);
+    padding: 2rem;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .speaker-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold-500), var(--copper-500));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .speaker-card:hover { transform: translateY(-4px); border-color: rgba(201, 161, 74, 0.3); }
+  .speaker-card:hover::before { transform: scaleX(1); }
+  .speaker-monogram {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--gold-500), var(--copper-500));
+    color: var(--ink-900);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+  }
+  .speaker-name { font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 500; }
+  .speaker-niche {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-500);
+    margin-bottom: 0.75rem;
+  }
+  .speaker-bio { font-size: 0.875rem; color: var(--paper-100); line-height: 1.5; }
+
+  /* MARQUEE */
+  .marquee-section {
+    background: var(--ink-900);
+    padding: 3rem 0;
+    border-top: 1px solid rgba(201, 161, 74, 0.12);
+    border-bottom: 1px solid rgba(201, 161, 74, 0.12);
+    overflow: hidden;
+  }
+  .marquee {
+    display: flex;
+    gap: 4rem;
+    animation: scroll 40s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: 'Fraunces', serif;
+    font-size: 1.75rem;
+    color: var(--paper-100);
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .marquee-item span { color: var(--gold-500); }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* CATEGORIES */
+  .categories { background: var(--ink-900); }
+  .cat-block {
+    margin-bottom: 5rem;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid rgba(201, 161, 74, 0.1);
+    scroll-margin-top: 100px;
+  }
+  .cat-block:last-child { border-bottom: none; }
+  .cat-header {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+  .cat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 6rem;
+    color: var(--gold-500);
+    line-height: 1;
+    opacity: 0.3;
+  }
+  .cat-title { font-size: clamp(2rem, 4vw, 3.5rem); }
+  .cat-count { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--gold-500); }
+  .cat-desc { color: var(--paper-100); max-width: 600px; line-height: 1.6; }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1rem;
+  }
+  .cat-card {
+    background: var(--ink-800);
+    border: 1px solid rgba(201, 161, 74, 0.08);
+    padding: 1.5rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .cat-card:hover {
+    background: linear-gradient(135deg, var(--ink-800), rgba(201, 161, 74, 0.05));
+    border-color: rgba(201, 161, 74, 0.3);
+    transform: translateY(-2px);
+  }
+  .cat-card-badges {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .cat-card-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.125rem;
+    color: var(--paper-50);
+    display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
+  }
+  .cat-card-name .arrow { color: var(--gold-500); font-size: 0.875rem; transition: transform 0.2s; }
+  .cat-card:hover .arrow { transform: translateX(4px); }
+  .cat-card-desc { font-size: 0.875rem; color: var(--paper-100); line-height: 1.5; margin-top: 0.25rem; }
+  .cat-card-meta {
+    font-size: 0.75rem;
+    color: var(--paper-100);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+  .cat-card-meta strong { color: var(--paper-50); font-weight: 500; }
+
+  /* PAY-OUT TRACKER */
+  .payout-section { background: var(--ink-800); }
+  .payout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+  }
+  .payout-table th {
+    text-align: left;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-500);
+    border-bottom: 1px solid rgba(201, 161, 74, 0.3);
+  }
+  .payout-table td {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid rgba(201, 161, 74, 0.08);
+    color: var(--paper-100);
+    font-size: 0.9375rem;
+    vertical-align: top;
+  }
+  .payout-table tr:hover td { background: rgba(201, 161, 74, 0.04); }
+  .payout-table tr.featured { background: rgba(201, 161, 74, 0.04); }
+  .payout-table tr.featured td { color: var(--paper-50); }
+  .payout-amount { font-family: 'Fraunces', serif; color: var(--gold-400); font-weight: 500; }
+
+  /* TOP PICKS */
+  .mapping { background: var(--ink-900); }
+  .map-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+  }
+  .map-table th {
+    text-align: left;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-500);
+    border-bottom: 1px solid rgba(201, 161, 74, 0.3);
+  }
+  .map-table td {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid rgba(201, 161, 74, 0.08);
+    color: var(--paper-100);
+    font-size: 0.9375rem;
+    vertical-align: top;
+  }
+  .map-table tr:hover td { background: rgba(201, 161, 74, 0.04); }
+  .map-speaker { font-family: 'Fraunces', serif; color: var(--paper-50); font-weight: 500; }
+  .map-pick { color: var(--gold-400); font-weight: 500; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink-900);
+    border-top: 1px solid rgba(201, 161, 74, 0.1);
+    padding: 4rem 2.5rem 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .footer-brand h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .footer-brand p { color: var(--paper-100); font-size: 0.9375rem; max-width: 320px; }
+  .footer-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-500);
+    margin-bottom: 1.5rem;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--paper-100);
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold-400); }
+  .footer-bottom {
+    max-width: 1440px;
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 161, 74, 0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--paper-100);
+    font-size: 0.875rem;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 2rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .cat-header { grid-template-columns: 1fr; gap: 1rem; }
+    .cat-num { font-size: 3.5rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .payout-table, .map-table { font-size: 0.8125rem; }
+    .payout-table th, .payout-table td, .map-table th, .map-table td { padding: 0.75rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">SpeakUp <span>Express</span></div>
+  <div class="nav-links">
+    <a href="#roster">Speakers</a>
+    <a href="#legend">Cómo leer</a>
+    <a href="#catalog">Catálogo</a>
+    <a href="#payouts">Eventos pagos</a>
+  </div>
+  <a href="#catalog" class="nav-cta-mini">Ver 120+ sitios</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-meta">
+      <span class="hero-meta-line"></span>
+      <span class="mono">Speaker Resources · 2026</span>
+    </div>
+    <h1>
+      El <em>catálogo</em><br>
+      <span class="stroke">definitivo</span><br>
+      para speakers
+    </h1>
+    <p class="hero-sub">
+      120+ sitios web curados donde los speakers de SpeakUp Express encuentran eventos presenciales, podcasts, summits virtuales, comunidades de organizadores y networking. Cada sitio clasificado por tipo, modelo de negocio y probabilidad de eventos pagos.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">120+</div>
+        <div class="hero-stat-label">Sitios curados</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">Categorías</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">12</div>
+        <div class="hero-stat-label">Speakers</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">~80</div>
+        <div class="hero-stat-label">Sitios Free</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">~15</div>
+        <div class="hero-stat-label">Más probables de pago</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <div class="hero-scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee">
+    <div class="marquee-item">Sessionize <span>·</span></div>
+    <div class="marquee-item">PodMatch <span>·</span></div>
+    <div class="marquee-item">Crowned <span>·</span></div>
+    <div class="marquee-item">WomenSpeakers <span>·</span></div>
+    <div class="marquee-item">SheIsMe <span>·</span></div>
+    <div class="marquee-item">Web Summit <span>·</span></div>
+    <div class="marquee-item">MatchMaker.fm <span>·</span></div>
+    <div class="marquee-item">Digital Summit <span>·</span></div>
+    <div class="marquee-item">Listen To Her <span>·</span></div>
+    <div class="marquee-item">AAS <span>·</span></div>
+    <div class="marquee-item">Sessionize <span>·</span></div>
+    <div class="marquee-item">PodMatch <span>·</span></div>
+    <div class="marquee-item">Crowned <span>·</span></div>
+    <div class="marquee-item">WomenSpeakers <span>·</span></div>
+    <div class="marquee-item">SheIsMe <span>·</span></div>
+    <div class="marquee-item">Web Summit <span>·</span></div>
+    <div class="marquee-item">MatchMaker.fm <span>·</span></div>
+    <div class="marquee-item">Digital Summit <span>·</span></div>
+    <div class="marquee-item">Listen To Her <span>·</span></div>
+    <div class="marquee-item">AAS <span>·</span></div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<section id="legend" class="legend">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-num">00</span>
+      <span class="section-label-line"></span>
+      <span class="mono">Cómo leer este catálogo</span>
+    </div>
+    <h2 class="section-title">Cada sitio viene con <em>3 señales</em></h2>
+    <p class="section-intro" style="margin-top: 1.5rem;">Antes de aplicar, mirá estos tres badges. Te dicen qué tipo de sitio es, cuánto cuesta y qué tan probable es que paguen al speaker.</p>
+
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-item-title">① Tipo de sitio</div>
+        <div class="legend-item-desc"><span class="badge badge-out">Out · Discovery</span> Speaker aplica → le seleccionan. Eventos concretos.<br><br><span class="badge badge-in">In · Directory</span> Organizer busca speaker y contacta. Inbound pasivo.<br><br><span class="badge badge-pod">In · Podcast</span> Host busca guest y contacta. Visibilidad + backlinks.<br><br><span class="badge badge-net">In · Networking</span> Local/recurrente. Genera speaking orgánico.</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-item-title">② Costo de acceso</div>
+        <div class="legend-item-desc"><span class="badge badge-free">Free</span> 100% gratis, sin upgrade obligatorio.<br><br><span class="badge badge-freemium">Freemium</span> Free tier útil + paid upgrade opcional.<br><br><span class="badge badge-paid">Paid</span> Sin free tier, o free muy limitado.<br><br><span class="badge badge-full">Full-service</span> $700-1,400/mes, lo hace la agency.</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-item-title">③ Probabilidad de pago al speaker</div>
+        <div class="legend-item-desc"><span class="badge badge-pay-high">💸 $$$ Alto</span> Pagan fees significativos ($5K-50K+).<br><br><span class="badge badge-pay-med">💵 $$ Medio</span> Pagan fees modestos ($500-5K) o stipend.<br><br><span class="badge badge-pay-free">🆓 Exposure</span> No pagan, exposure only.<br><br><span class="badge badge-pay-free">🎟️ Ticket only</span> Speaker entra gratis al evento, no fee.</div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-item-title">④ Cómo encontrar el fit</div>
+        <div class="legend-item-desc">Cada card trae la línea <strong style="color: var(--gold-400);">"Fit:"</strong> con los speakers de SpeakUp Express que mejor matchean ese sitio. Si está vacío, el sitio es fit general.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROSTER -->
+<section id="roster" class="roster">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-num">01</span>
+      <span class="section-label-line"></span>
+      <span class="mono">Roster</span>
+    </div>
+    <h2 class="section-title">12 speakers, <em>una</em> red</h2>
+    <p class="section-intro" style="margin-top: 1.5rem;">Faith, leadership, real estate, finance, sales, women, suicide prevention, wellness. Cada uno con un perfil único, un nicho claro y un match con sitios específicos.</p>
+    <div class="roster-grid">
+      <div class="speaker-card">
+        <div class="speaker-monogram">AP</div>
+        <div class="speaker-niche">Faith · Suicide Survivor</div>
+        <div class="speaker-name">Angie Pichardo</div>
+        <div class="speaker-bio">Pain → faith → calling. Christian speaker, near-death survivor, suicide survivor. @angie.p.speaks</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">PM</div>
+        <div class="speaker-niche">Senior Pastor · Leadership</div>
+        <div class="speaker-name">Dr. Phillip Meade</div>
+        <div class="speaker-bio">Ex NASA. USA Today / WSJ Bestseller. COO Gallaher Edge. Custom tier client.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">PL</div>
+        <div class="speaker-niche">Growth · LATAM</div>
+        <div class="speaker-name">Patricio Larrea</div>
+        <div class="speaker-bio">CGO, Leadership Communication Coach, Forbes Contributor. Ecuador / LATAM.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">AK</div>
+        <div class="speaker-niche">Faith · Christian Women</div>
+        <div class="speaker-name">Angelie Kapoor</div>
+        <div class="speaker-bio">Identidad, resiliencia, Christian women 20–65. Florida.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">KA</div>
+        <div class="speaker-niche">Real Estate · Business</div>
+        <div class="speaker-name">Kimberly Aschman</div>
+        <div class="speaker-bio">Broker Associates Realty + Voila Workspace. Daytona FL. Realtor + podcast en lanzamiento.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">KW</div>
+        <div class="speaker-niche">Career · Reinvention</div>
+        <div class="speaker-name">Kelly White</div>
+        <div class="speaker-bio">Career Formula™. Midlife y late-career professionals. Reinvención laboral.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">PC</div>
+        <div class="speaker-niche">Multi-Exit · Finance</div>
+        <div class="speaker-name">Philip Chan</div>
+        <div class="speaker-bio">Multi-exit founder, PhD, 11.6k LinkedIn followers. Finance + wealth.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">RK</div>
+        <div class="speaker-niche">Leadership · Enterprise</div>
+        <div class="speaker-name">Russ Katzman</div>
+        <div class="speaker-bio">Former enterprise strategy executive. Leadership transformation.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">JF</div>
+        <div class="speaker-niche">Faith · Leadership</div>
+        <div class="speaker-name">Jeff Forrester</div>
+        <div class="speaker-bio">"Gal 2:20". FCA + UF. Faith + leadership coach. Orlando.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">ED</div>
+        <div class="speaker-niche">Affirmed Women</div>
+        <div class="speaker-name">Evelena Dawson</div>
+        <div class="speaker-bio">Affirmed Women founder. Faith women. Identity + purpose.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">AB</div>
+        <div class="speaker-niche">Sales · Author</div>
+        <div class="speaker-name">Alex Berman</div>
+        <div class="speaker-bio">Galadon Gold. Best-selling author. Sales + marketing frameworks.</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-monogram">RS</div>
+        <div class="speaker-niche">Wellness · Nutrition</div>
+        <div class="speaker-name">Rachel Scheer</div>
+        <div class="speaker-bio">Rachel Scheer Nutrition. IG activa. Wellness, hormones, holistic health.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGH-PROBABILITY PAYOUTS -->
+<section id="payouts" class="payout-section">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-num">★</span>
+      <span class="section-label-line"></span>
+      <span class="mono">Más probables de pago</span>
+    </div>
+    <h2 class="section-title">Donde <em>más probable</em> pagan al speaker</h2>
+    <p class="section-intro" style="margin-top: 1.5rem;">Subset curado de los 120 sitios donde la probabilidad de fee significativo (no solo exposure) es más alta. Ideal para speakers con track established.</p>
+    <table class="payout-table">
+      <thead>
+        <tr>
+          <th>Sitio</th>
+          <th>Tipo</th>
+          <th>Costo</th>
+          <th>Fee típico</th>
+          <th>Mejor para</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="featured">
+          <td><strong>Premiere Speakers Bureau</strong><br><a href="https://premierespeakers.com/christian" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">premierespeakers.com/christian ↗</a></td>
+          <td><span class="badge badge-in">In · Bureau</span></td>
+          <td><span class="badge badge-paid">Paid</span> (comisión)</td>
+          <td><span class="payout-amount">$$$ $10K-50K+</span></td>
+          <td>Dr. Meade, Angie, Patricio</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>All American Speakers</strong><br><a href="https://www.allamericanspeakers.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">allamericanspeakers.com ↗</a></td>
+          <td><span class="badge badge-in">In · Bureau</span></td>
+          <td><span class="badge badge-paid">Paid</span> (comisión)</td>
+          <td><span class="payout-amount">$$$ $5K-30K+</span></td>
+          <td>Dr. Meade, Angie, Alex, Patricio</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Web Summit</strong><br><a href="https://websummit.com/speaker-application/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">websummit.com ↗</a></td>
+          <td><span class="badge badge-out">Out · Conf</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $Travel + stipend</span></td>
+          <td>Philip, Patricio, Russ, Alex</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>WebinarJam / Summit Series</strong><br><a href="https://summitseries.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">summitseries.com ↗</a></td>
+          <td><span class="badge badge-in">In · Curated</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $5K-15K+</span></td>
+          <td>Philip, Russ, Patricio</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>IEEE International Leadership Conf</strong><br><a href="https://life.ieee.org/call-for-speakers-2026-ieee-international-leadership-conference/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">life.ieee.org ↗</a></td>
+          <td><span class="badge badge-out">Out · Conf</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $Travel + $1-3K honorarium</span></td>
+          <td>Patricio, Russ, Philip</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Salesforce Dreamforce</strong><br><a href="https://www.salesforce.com/dreamforce/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">salesforce.com/dreamforce ↗</a></td>
+          <td><span class="badge badge-out">Out · Mega</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $Travel + $5K-15K</span></td>
+          <td>Philip, Alex</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Inbound (HubSpot)</strong><br><a href="https://www.inbound.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">inbound.com ↗</a></td>
+          <td><span class="badge badge-out">Out · Mega</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $Travel + $3-10K</span></td>
+          <td>Alex, Patricio, Philip</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>SaaStr Annual</strong><br><a href="https://www.saastrannual.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">saastrannual.com ↗</a></td>
+          <td><span class="badge badge-out">Out · Conf</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $Travel + $5-10K</span></td>
+          <td>Philip, Patricio</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Content Marketing World</strong><br><a href="https://www.contentmarketingworld.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">contentmarketingworld.com ↗</a></td>
+          <td><span class="badge badge-out">Out · Conf</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $5-10K + travel</span></td>
+          <td>Alex, Patricio</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Talks at GS (Goldman Sachs)</strong><br><a href="https://www.goldmansachs.com/insights/talks-at-gs" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">goldmansachs.com ↗</a></td>
+          <td><span class="badge badge-in">In · Curated</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$$ $15K-50K+</span></td>
+          <td>Russ, Philip</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Mastermind Talks</strong><br><a href="https://mastermindtalks.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">mastermindtalks.com ↗</a></td>
+          <td><span class="badge badge-in">In · Curated</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">$$ $5-15K + travel</span></td>
+          <td>Philip, Russ, Patricio</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>6th Annual Construction MH Conf</strong><br><a href="https://www.unitesurvivors.com/construction-mental-health-wellbeing-conference" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">unitesurvivors.com ↗</a></td>
+          <td><span class="badge badge-out">Out · Conf</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">💵 $Travel + stipend</span></td>
+          <td>Angie</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>AAS — American Association Suicidology</strong><br><a href="https://suicidology.org/events/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">suicidology.org ↗</a></td>
+          <td><span class="badge badge-out">Out · Conf</span></td>
+          <td><span class="badge badge-free">Free</span></td>
+          <td><span class="payout-amount">💵 $Stipend $500-2K + travel</span></td>
+          <td>Angie ⭐</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>Heartcast Media (podcast agency)</strong><br><a href="https://www.heartcastmedia.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">heartcastmedia.com ↗</a></td>
+          <td><span class="badge badge-pod">In · Agency</span></td>
+          <td><span class="badge badge-full">Full-service</span> $700-1,400/mes</td>
+          <td><span class="payout-amount">Indirecto</span> (leads del podcasting)</td>
+          <td>Alex, Russ, Philip</td>
+        </tr>
+        <tr class="featured">
+          <td><strong>The Expert Bookers (podcast agency)</strong><br><a href="https://www.expertbookers.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">expertbookers.com ↗</a></td>
+          <td><span class="badge badge-pod">In · Agency</span></td>
+          <td><span class="badge badge-full">Full-service</span> $1,400+/mes</td>
+          <td><span class="payout-amount">Indirecto</span> (leads)</td>
+          <td>Alex, Russ, Philip</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog" class="categories">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-num">02</span>
+      <span class="section-label-line"></span>
+      <span class="mono">Catálogo completo</span>
+    </div>
+    <h2 class="section-title">120+ sitios, <em>siete</em> categorías</h2>
+    <p class="section-intro" style="margin-top: 1.5rem;">Catálogo completo. Cada sitio con sus 3 badges: tipo, costo y probabilidad de pago. Filtrá mentalmente por lo que necesitás hoy.</p>
+
+    <!-- CAT 1: CFP / Discovery -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">01</div>
+        <div>
+          <h3 class="cat-title">CFP / Discovery</h3>
+          <p class="cat-desc">Speaker se registra una vez, aplica a múltiples eventos. Outbound puro. Mayoría free.</p>
+        </div>
+        <div class="cat-count">8 sitios</div>
+      </div>
+      <div class="cat-grid">
+        <a href="https://sessionize.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Sessionize <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">296k speakers. 81k profiles públicos. La plataforma CFP más grande del mundo.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://cfp.directory/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">CFP Directory <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Open-source. Submit directo desde perfil.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://speak-up.pro/en" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">SpeakUp.pro <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">70k speakers + AI matching organizers↔speakers. Sin comisiones.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.papercall.io/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Papercall <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">CFPs para tech/dev conferences.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Patricio, Philip, Russ, Alex</div>
+        </a>
+        <a href="https://github.com/tech-conferences/conference-list" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Tech Conferences List (GitHub) <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Lista curada en GitHub por fecha y lugar.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Patricio, Philip</div>
+        </a>
+        <a href="https://confs.tech/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Confs.tech <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Conferencias tech filtradas por fecha, topic y región.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Patricio, Philip, Alex</div>
+        </a>
+        <a href="https://dev.events/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Developer Events <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Patricio, Philip</div>
+        </a>
+        <a href="https://sessionize.com/speakers-directory" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Sessionize Speakers Directory <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">81k speakers buscables. Organizers te encuentran a vos.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAT 2: Speaker Directories -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">02</div>
+        <div>
+          <h3 class="cat-title">Speaker Directories & Bureaus</h3>
+          <p class="cat-desc">Inbound: planners y organizers te buscan. Acá está la mayoría del dinero, pero también las subscripciones más caras.</p>
+        </div>
+        <div class="cat-count">~30 sitios</div>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">A · Faith / Christian (free listing + bureaus)</h4>
+      <div class="cat-grid">
+        <a href="https://www.crownedexecutivewomen.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Crowned Christian Women <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie, Kimberly, Kelly, Evelena</div>
+        </a>
+        <a href="https://www.womenspeakers.com/join" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Free / $49-2497</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">WomenSpeakers.com <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">22 años, 1,700+ speakers. Para churches + parachurch + summits.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie, Kimberly, Kelly, Evelena</div>
+        </a>
+        <a href="https://www.allamericanspeakers.com/lists/leading-christian-women.php" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-paid">Paid bureau</span>
+            <span class="badge badge-pay-high">$$$ Alto</span>
+          </div>
+          <div class="cat-card-name">All American Speakers (Christian list) <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">1-800-698-2536. Curated. Fees $5K-30K+.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Angie, Alex, Patricio (established)</div>
+        </a>
+        <a href="https://premierespeakers.com/christian" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-paid">Paid bureau</span>
+            <span class="badge badge-pay-high">$$$ Alto</span>
+          </div>
+          <div class="cat-card-name">Premiere Speakers (Christian) <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Keynote + Motivational. Fees $10K-50K+.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Angie, Patricio (top tier)</div>
+        </a>
+        <a href="https://www.lifeway.com/en/events/women" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Apply</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">Lifeway Women Events <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Priscilla Shirer, Jen Wilkin, Lysa TerKeurst. Top tier aspirational.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie (aspirational top tier)</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">B · General / Leadership / Business</h4>
+      <div class="cat-grid">
+        <a href="https://listentoher.io/features/speaker-profile" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free vetting</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Listen To Her <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Planners te contactan directo. Women directory.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie, Kimberly, Kelly, Evelena, Rachel</div>
+        </a>
+        <a href="https://www.consultclarity.org/post/speaker-bureaus-leadership-speakers" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">35 Leadership Speaker Bureaus (list) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Russ, Patricio, Philip</div>
+        </a>
+        <a href="https://speakers.com/top-10-speaker-bureaus-in-2026/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Speakers.com Top 10 (list) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Russ, Patricio, Philip, Alex</div>
+        </a>
+        <a href="https://speakerflow.com/30-plus-speakers-bureaus-to-consider-as-you-grow/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">SpeakerFlow 30+ Bureaus <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://blog.tito.io/posts/conference-guest-speakers" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Tito Blog — 13 Sites for Speakers <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.allamericanspeakers.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-paid">Paid bureau</span>
+            <span class="badge badge-pay-high">$$$ Alto</span>
+          </div>
+          <div class="cat-card-name">All American Speakers (general) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS (established)</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">C · Real Estate</h4>
+      <div class="cat-grid">
+        <a href="https://www.diversitytalks-re.org/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Diversity Talks Real Estate <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">liz@diversitytalks-re.org</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://events.humanitix.com/speakers-cafe-june-2026-women-only" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Speakers Café — Diversity Talks RE <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://joinwomeninrealestate.com/Events" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Invitación</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">Women In Real Estate (community) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://thewomeninrealestatesummit.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Women In Real Estate Summit <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://www.floridarealtors.org/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Member</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">Florida Realtors <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://www.wcr.org/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Member</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">Women's Council of REALTORS <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://events.globest.com/WomenOfInfluence" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-paid">Awards</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">GlobeSt. Women of Influence <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://www.bisnow.com/events/women" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Bisnow — Women in RE <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+        <a href="https://adventuresincre.com/events/event/women-of-influence-conference/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Apply</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">GlobeSt Women of Influence Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">D · Suicide Prevention / Mental Health</h4>
+      <div class="cat-grid">
+        <a href="https://suicidology.org/events/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-med">$$ Stipend</span>
+          </div>
+          <div class="cat-card-name">AAS — Suicidology <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">60th Annual · 11-15 abr 2027. Largest US conf.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie ⭐⭐</div>
+        </a>
+        <a href="https://www.iasp.info/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Member</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">IASP — International Association Suicide Prevention <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+        <a href="https://www.rosesintheocean.com.au/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Lived exp registry</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Roses in the Ocean <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+        <a href="https://www.ohiospf.org/together_forward/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Together Forward (Ohio SPF) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+        <a href="https://mentalhealthacademy.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Mental Health Academy <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+        <a href="https://hespc.org/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-med">$$ Stipend</span>
+          </div>
+          <div class="cat-card-name">HESPC — Higher Ed Suicide Prevention <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">E · Wellness / Health</h4>
+      <div class="cat-grid">
+        <a href="https://www.thewellnessshow.com/become-an-speaker" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">The Wellness Show <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Vancouver · 12k+ attendees.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Rachel</div>
+        </a>
+        <a href="https://www.ihsymposium.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Apply</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Integrative Healthcare Symposium <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Rachel</div>
+        </a>
+        <a href="https://healcon.org/call-for-speakers-2026/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">NANP HEALCon <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Rachel</div>
+        </a>
+        <a href="https://www.csnnalumni.org/call-for-speakers/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">CSNN — CHNC Holistic Nutrition <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Rachel</div>
+        </a>
+        <a href="https://www.thewellnessconference.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">The Wellness Conference 31 <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Rachel</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAT 3: Podcast -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">03</div>
+        <div>
+          <h3 class="cat-title">Podcast Guesting</h3>
+          <p class="cat-desc">Hosts te buscan. No pagan, pero dan visibilidad + backlinks. La mayoría son free.</p>
+        </div>
+        <div class="cat-count">19 sitios</div>
+      </div>
+      <div class="cat-grid">
+        <a href="https://podmatch.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-freemium">Free / $29</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">PodMatch <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">#1 usado. AI matching. Booking workflow.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://matchmaker.fm/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-freemium">Free / $15</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">MatchMaker.fm <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">38k+ profiles. Free tier útil.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://talks.co/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Talks.co <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Smart matches + automated booking.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://podcastguests.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-paid">$9-45/mo</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">PodcastGuests.com <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Newsletter semanal con oportunidades.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://podpitch.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-paid">$19/mo</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">PodPitch <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">AI-assisted pitches via email.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Philip</div>
+        </a>
+        <a href="https://guestio.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-freemium">Free / paid</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Guestio <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://podcastmovement.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">$Various</span>
+            <span class="badge badge-pay-med">$$ Stipend</span>
+          </div>
+          <div class="cat-card-name">Podcast Movement <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Philip</div>
+        </a>
+        <a href="https://podfestexpo.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">$Various</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">Podfest Expo <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Philip</div>
+        </a>
+        <a href="https://vidsummit.com/speakers" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">$Various</span>
+            <span class="badge badge-pay-med">$$ Travel</span>
+          </div>
+          <div class="cat-card-name">VidSummit <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Kelly, Angie</div>
+        </a>
+        <a href="https://www.heartcastmedia.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-full">$700-1,400/mo</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Heartcast Media <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Russ, Philip (alto budget)</div>
+        </a>
+        <a href="https://www.expertbookers.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-full">$1,400+/mo</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">The Expert Bookers <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Russ, Philip (alto budget)</div>
+        </a>
+        <a href="https://interviewvalet.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-full">Full-service</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Interview Valet <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Russ, Philip</div>
+        </a>
+        <a href="https://pearllemonleads.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-paid">Lead gen</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Pearl Lemon Leads <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Philip</div>
+        </a>
+        <a href="https://yourexpertguest.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-full">Full-service · Women</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Your Expert Guest <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie, Kimberly, Kelly, Evelena</div>
+        </a>
+        <a href="https://fame.so/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-paid">Various</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Fame.so <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Philip, Russ</div>
+        </a>
+        <a href="https://podmeup.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-paid">Various</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Pod Me Up <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Russ, Philip, Patricio</div>
+        </a>
+        <a href="https://rephonic.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-paid">Database</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Rephonic <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.listennotes.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-freemium">Free / paid</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Listen Notes <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.podchaser.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-pod">In</span>
+            <span class="badge badge-freemium">Free / Pro</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Podchaser <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAT 4: Virtual Summits -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">04</div>
+        <div>
+          <h3 class="cat-title">Virtual Summits</h3>
+          <p class="cat-desc">Summits online recurrentes. Bajo esfuerzo, alta exposición. Mayoría free.</p>
+        </div>
+        <div class="cat-count">10 sitios</div>
+      </div>
+      <div class="cat-grid">
+        <a href="https://sheismeconference.com/application" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">SheIsMe Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie, Kimberly, Kelly, Evelena, Rachel</div>
+        </a>
+        <a href="https://femalefounderspace.com/call-for-speakers-summit/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Female Founder Space Summit <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Kelly, Angelie</div>
+        </a>
+        <a href="https://www.voiceandvisibilitywomenssummit.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Voice + Visibility Women's Summit <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angelie, Kimberly, Angie, Evelena</div>
+        </a>
+        <a href="https://powertofly.com/up/a-look-at-empower-her-2026" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">PowerToFly Empower Her <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Russ, Philip</div>
+        </a>
+        <a href="https://digital-skills-jobs.europa.eu/en/latest/events/women-tech-global-conference-2026" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">WomenTech Global Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Patricio, Russ</div>
+        </a>
+        <a href="https://www.iasp.info/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Member</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Roses in the Ocean WSPD <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+        <a href="https://www.ohiospf.org/together_forward/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Together Forward (Ohio SPF) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
+        </a>
+        <a href="https://www.facebook.com/groups/guestspeakerswanted/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Tea and Coffee Hub Summit <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Kelly</div>
+        </a>
+        <a href="https://www.wib.femalefounderspace.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">WIB Women in Business (FFIG) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Kelly, Angelie</div>
+        </a>
+        <a href="https://www.sisterleadersconference.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Sister Leaders Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angelie, Angie, Kimberly, Kelly</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAT 5: Communities by Niche -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">05</div>
+        <div>
+          <h3 class="cat-title">Comunidades de Organizadores</h3>
+          <p class="cat-desc">Sitios donde organizers buscan speakers por nicho. Outbound: apply.</p>
+        </div>
+        <div class="cat-count">~30 sitios</div>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">F · Faith / Church</h4>
+      <div class="cat-grid">
+        <a href="https://churchconferencelist.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Church Conference List <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff, Angie</div>
+        </a>
+        <a href="https://smallchurchministry.com/conferencespeakerapplication/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">Small Church Ministry <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">24 speakers/conf. Online.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff</div>
+        </a>
+        <a href="https://www.lifeway.com/en/events" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Apply</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">Lifeway Events <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff, Angie, Angelie</div>
+        </a>
+        <a href="https://www.watermarkresources.com/conferences/clc" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Apply</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">Watermark Church Leaders Conf <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff</div>
+        </a>
+        <a href="https://ambs.edu/pastors-and-leaders-conference/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">$215-410</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">AMBS Pastors & Leaders <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff</div>
+        </a>
+        <a href="https://churchitnetwork.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Church IT Network <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Patricio, Philip</div>
+        </a>
+        <a href="https://churchcommunications.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Church Communications Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">G · Women in Business / Leadership</h4>
+      <div class="cat-grid">
+        <a href="https://attendgtm.com/womens-summit-2026-call-for-speakers" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">Women of Pavilion Summit (GTM 2026) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Philip, Russ, Kimberly</div>
+        </a>
+        <a href="https://www.ellevatenetwork.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Member</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Ellevate Network <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Angelie, Kimberly</div>
+        </a>
+        <a href="https://www.ewfglobal.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Annual</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">EWF Executive Women's Forum <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Russ, Philip</div>
+        </a>
+        <a href="https://seramount.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-freemium">Rolling</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Seramount <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">3 summits/año (Apr, May, Oct).</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Russ, Philip, Angelie</div>
+        </a>
+        <a href="https://cawic.ca/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">CAWIC <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Kelly</div>
+        </a>
+        <a href="https://www.nawbo.org/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-freemium">Member</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">NAWBO <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Kimberly, Angelie</div>
+        </a>
+        <a href="https://wls2026.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">Women's Leadership Summit 2026 (WLS) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie, Kelly, Kimberly</div>
+        </a>
+        <a href="https://www.meetup.com/topics/professional-womens-networking-group/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Meetup — Women's Business Networking <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS women</div>
+        </a>
+        <a href="https://www.embracingyouconference.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Embracing YOU Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angelie, Evelena, Kimberly</div>
+        </a>
+        <a href="https://sharingthespark.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">The Spark Women's Leadership <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Angelie, Angie</div>
+        </a>
+        <a href="https://www.sisterleadersconference.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Sister Leaders Conference <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Angelie, Angie, Kimberly, Kelly</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">H · Finance / Wealth</h4>
+      <div class="cat-grid">
+        <a href="https://www.investhercon.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">$1,097-1,697</span>
+            <span class="badge badge-pay-free">Ticket only</span>
+          </div>
+          <div class="cat-card-name">InvestHER Con <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Philip Chan</div>
+        </a>
+        <a href="https://finconevent.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Apply</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">FinCon <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip Chan, Rachel</div>
+        </a>
+        <a href="https://moneycon.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Apply</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">MoneyCon <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip Chan</div>
+        </a>
+        <a href="https://www.wealthmanagement.com/events" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Various</span>
+            <span class="badge badge-pay-med">$$ Medio</span>
+          </div>
+          <div class="cat-card-name">Wealth Management Events <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Russ</div>
+        </a>
+      </div>
+
+      <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-500); margin: 2rem 0 1rem;">I · Sales / Marketing</h4>
+      <div class="cat-grid">
+        <a href="https://www.digitalsummit.com/home/apply-speak" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-med">$$ Travel</span>
+          </div>
+          <div class="cat-card-name">Digital Summit <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">Multi-city. Submit once, considered for 8+.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Philip</div>
+        </a>
+        <a href="https://websummit.com/speaker-application/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-med">$$ Travel + stipend</span>
+          </div>
+          <div class="cat-card-name">Web Summit <span class="arrow">↗</span></div>
+          <div class="cat-card-desc">70k+ attendees. Nov 9-12 Lisboa.</div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Patricio, Russ, Alex</div>
+        </a>
+        <a href="https://www.contentmarketingworld.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-paid">Apply</span>
+            <span class="badge badge-pay-med">$$ $5-10K</span>
+          </div>
+          <div class="cat-card-name">Content Marketing World <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio</div>
+        </a>
+        <a href="https://www.salesforce.com/dreamforce/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-med">$$ $5-15K</span>
+          </div>
+          <div class="cat-card-name">Salesforce Dreamforce <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Alex</div>
+        </a>
+        <a href="https://www.saastrannual.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Apply</span>
+            <span class="badge badge-pay-med">$$ $5-10K</span>
+          </div>
+          <div class="cat-card-name">SaaStr Annual <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Patricio</div>
+        </a>
+        <a href="https://www.inbound.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-med">$$ $3-10K</span>
+          </div>
+          <div class="cat-card-name">Inbound (HubSpot) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Patricio, Philip</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAT 6: Networking -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">06</div>
+        <div>
+          <h3 class="cat-title">Networking & 1-1 Calls</h3>
+          <p class="cat-desc">Meetings recurrentes locales. Generan speaking opportunities orgánicas. Casi todo free.</p>
+        </div>
+        <div class="cat-count">12 sitios</div>
+      </div>
+      <div class="cat-grid">
+        <a href="https://www.bni.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-paid">Membership</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">BNI (Business Network International) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Kelly, Russ, Philip, Alex</div>
+        </a>
+        <a href="https://www.bni.com/find-a-chapter/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Find free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">BNI Find a Chapter <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.meetup.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Meetup <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.uschamber.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">U.S. Chamber of Commerce <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.rotary.org/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Rotary Club <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Dr. Meade, Jeff, Russ, Philip</div>
+        </a>
+        <a href="https://www.1millioncups.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">1 Million Cups <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Alex, Philip, Patricio, Kimberly</div>
+        </a>
+        <a href="https://www.startupgrind.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Startup Grind <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Alex, Patricio</div>
+        </a>
+        <a href="https://femcity.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">FemCity <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Angelie, Kelly, Evelena</div>
+        </a>
+        <a href="https://www.ewomennetwork.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-paid">Member</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">eWomenNetwork <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kimberly, Kelly, Angelie</div>
+        </a>
+        <a href="https://www.ellevatenetwork.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-freemium">Free / paid</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">Ellevate Network <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Kelly, Angelie, Kimberly</div>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Indirecto</span>
+          </div>
+          <div class="cat-card-name">LinkedIn Local <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://mastermindtalks.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Curated</span>
+            <span class="badge badge-pay-med">$$ $5-15K</span>
+          </div>
+          <div class="cat-card-name">Mastermind Talks <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Russ, Patricio</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAT 7: Virtual Coffee / Boardroom -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-num">07</div>
+        <div>
+          <h3 class="cat-title">Virtual Coffee & Boardroom</h3>
+          <p class="cat-desc">Eventos pequeños recurrentes. Bajo barrier, alta repetición.</p>
+        </div>
+        <div class="cat-count">8 sitios</div>
+      </div>
+      <div class="cat-grid">
+        <a href="https://summitseries.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Curated</span>
+            <span class="badge badge-pay-med">$$ $5-15K</span>
+          </div>
+          <div class="cat-card-name">Summit Series <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Philip, Russ</div>
+        </a>
+        <a href="https://www.ted.com/participate/ted-circles" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-net">Net</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">TED Circles <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.ted.com/tedx/events" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">TEDx Events <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.curated-events.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Curated Events <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.eventbrite.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">Eventbrite <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.goldmansachs.com/insights/talks-at-gs" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-in">In</span>
+            <span class="badge badge-free">Curated</span>
+            <span class="badge badge-pay-high">$$$ $15-50K</span>
+          </div>
+          <div class="cat-card-name">Talks at GS (Goldman Sachs) <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> Russ, Philip</div>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">LinkedIn Audio Events <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+        <a href="https://www.youtube.com/" target="_blank" class="cat-card">
+          <div class="cat-card-badges">
+            <span class="badge badge-out">Out</span>
+            <span class="badge badge-free">Free</span>
+            <span class="badge badge-pay-free">Exposure</span>
+          </div>
+          <div class="cat-card-name">YouTube Live <span class="arrow">↗</span></div>
+          <div class="cat-card-meta"><strong>Fit:</strong> TODOS</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOP PICKS -->
+<section id="mapping" class="mapping">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-num">03</span>
+      <span class="section-label-line"></span>
+      <span class="mono">Top picks por speaker</span>
+    </div>
+    <h2 class="section-title">El match directo, <em>uno a uno</em></h2>
+    <p class="section-intro" style="margin-top: 1.5rem;">Lo que cada speaker debería priorizar. El top 3 por fit + tipo de sitio.</p>
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th>Speaker</th>
+          <th>Top pick 1</th>
+          <th>Top pick 2</th>
+          <th>Top pick 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="map-speaker">Angie Pichardo</td><td class="map-pick">WomenSpeakers.com (In · Directory · Free)</td><td class="map-pick">AAS (Out · Stipend $500-2K)</td><td class="map-pick">PodMatch (In · Free)</td></tr>
+        <tr><td class="map-speaker">Dr. Phillip Meade</td><td class="map-pick">Premiere Christian Bureau ($$$ Alto)</td><td class="map-pick">Small Church Ministry (Free)</td><td class="map-pick">Watermark 2027 (Out)</td></tr>
+        <tr><td class="map-speaker">Patricio Larrea</td><td class="map-pick">Web Summit ($$ Travel + stipend)</td><td class="map-pick">Digital Summit multi-city ($$ Travel)</td><td class="map-pick">SpeakUp.pro (In · Free)</td></tr>
+        <tr><td class="map-speaker">Angelie Kapoor</td><td class="map-pick">Crowned Christian Women (In · Free)</td><td class="map-pick">Listen To Her (In · Free)</td><td class="map-pick">SheIsMe Summit (Out · Free)</td></tr>
+        <tr><td class="map-speaker">Kimberly Aschman</td><td class="map-pick">Florida Realtors + WCR (In · Member)</td><td class="map-pick">Diversity Talks RE (In · Free)</td><td class="map-pick">InvestHER Con (Out · $$ Medio)</td></tr>
+        <tr><td class="map-speaker">Kelly White</td><td class="map-pick">Listen To Her (In · Free)</td><td class="map-pick">WLS 2026 San Antonio (Out · Free)</td><td class="map-pick">Women of Pavilion (Out · Free)</td></tr>
+        <tr><td class="map-speaker">Philip Chan</td><td class="map-pick">Web Summit ($$ Travel + stipend)</td><td class="map-pick">Digital Summit ($$ Travel)</td><td class="map-pick">Mastermind Talks ($$ $5-15K)</td></tr>
+        <tr><td class="map-speaker">Russ Katzman</td><td class="map-pick">Talks at GS ($$$ $15-50K)</td><td class="map-pick">Mastermind Talks ($$ $5-15K)</td><td class="map-pick">Leadership Bureaus (Free list)</td></tr>
+        <tr><td class="map-speaker">Jeff Forrester</td><td class="map-pick">Church Conference List (Free)</td><td class="map-pick">Small Church Ministry (Free)</td><td class="map-pick">Watermark 2027 (Out)</td></tr>
+        <tr><td class="map-speaker">Evelena Dawson</td><td class="map-pick">WomenSpeakers.com (In · Free)</td><td class="map-pick">Crowned Christian Women (In · Free)</td><td class="map-pick">Embracing YOU (Out · Free)</td></tr>
+        <tr><td class="map-speaker">Alex Berman</td><td class="map-pick">Premiere / All American ($$$ Alto)</td><td class="map-pick">PodMatch (In · Free)</td><td class="map-pick">Digital Summit ($$ Travel)</td></tr>
+        <tr><td class="map-speaker">Rachel Scheer</td><td class="map-pick">The Wellness Show (Out · Free)</td><td class="map-pick">Integrative Healthcare (Out · Apply)</td><td class="map-pick">NANP HEALCon (Out · Free)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>SpeakUp <span style="color: var(--gold-500);">Express</span></h3>
+      <p>Catálogo curado de sitios donde los speakers encuentran eventos, podcasts, summits y comunidades. Cada sitio con tipo, costo y probabilidad de pago.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Speakers</h4>
+      <a href="#roster">Roster completo</a>
+      <a href="#mapping">Top picks</a>
+      <a href="#payouts">Eventos pagos</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categorías</h4>
+      <a href="#catalog">CFP / Discovery</a>
+      <a href="#catalog">Directories</a>
+      <a href="#catalog">Podcasts</a>
+      <a href="#catalog">Summits</a>
+      <a href="#catalog">Networking</a>
+    </div>
+    <div class="footer-col">
+      <h4>Recursos</h4>
+      <a href="https://sessionize.com/" target="_blank">Sessionize</a>
+      <a href="https://podmatch.com/" target="_blank">PodMatch</a>
+      <a href="https://www.womenspeakers.com/" target="_blank">WomenSpeakers</a>
+      <a href="https://suicidology.org/" target="_blank">AAS</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 SpeakUp Express · Orlando FL · Curated by Mavis</div>
+    <div>Built for Jhon · SMM SpeakUp Express</div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.speaker-card, .cat-card, .cat-block, .map-table, .wins-grid, .roster-grid, .cat-num, .cat-title, .cat-count, .map-speaker, .map-pick, .payout-table tr, .legend-item').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+
+  // Stagger card reveals
+  document.querySelectorAll('.speaker-card, .cat-card').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 8) * 60}ms`;
+  });
+</script>
+
+</body>
+</html>
