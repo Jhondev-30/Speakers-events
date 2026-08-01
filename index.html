@@ -966,6 +966,8 @@
     line-height: 1;
   }
   .info-btn:hover { background: var(--gold-500); color: var(--ink-900); transform: scale(1.05); }
+  .info-btn-sm { position: static; padding: 0.25rem 0.5rem; font-size: 0.625rem; }
+  .payout-info-cell { text-align: center; white-space: nowrap; width: 80px; }
   .cat-card { position: relative !important; }
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(10, 20, 18, 0.85); backdrop-filter: blur(8px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 2rem; overflow-y: auto; }
@@ -1057,7 +1059,7 @@
   <div class="hero-content">
     <div class="hero-meta">
       <span class="hero-meta-line"></span>
-      <span class="mono">Speaker Resources · 2026 · v8 (responsive)</span>
+      <span class="mono">Speaker Resources · 2026 · v9 (payouts modal)</span>
     </div>
     <h1>
       El <em>catálogo</em><br>
@@ -1258,6 +1260,7 @@
           <th>Costo</th>
           <th>Fee típico</th>
           <th>Mejor para</th>
+          <th>Info</th>
         </tr>
       </thead>
       <tbody>
@@ -1267,6 +1270,8 @@
           <td><span class="badge badge-paid">Paid</span> (comisión)</td>
           <td><span class="payout-amount">$$$ $10K-50K+</span></td>
           <td>Dr. Meade, Angie, Patricio</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="directory" data-site-name="Premiere Speakers Bureau" data-site-url="https://premierespeakers.com/christian" data-site-fit="Dr. Meade, Angie, Patricio" data-site-badges="<span class=&quot;badge badge-in&quot;>In · Bureau</span> <span class=&quot;badge badge-paid&quot;>Paid</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>All American Speakers</strong><br><a href="https://www.allamericanspeakers.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">allamericanspeakers.com ↗</a></td>
@@ -1274,6 +1279,8 @@
           <td><span class="badge badge-paid">Paid</span> (comisión)</td>
           <td><span class="payout-amount">$$$ $5K-30K+</span></td>
           <td>Dr. Meade, Angie, Alex, Patricio</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="directory" data-site-name="All American Speakers" data-site-url="https://www.allamericanspeakers.com/" data-site-fit="Dr. Meade, Angie, Alex, Patricio" data-site-badges="<span class=&quot;badge badge-in&quot;>In · Bureau</span> <span class=&quot;badge badge-paid&quot;>Paid</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Web Summit</strong><br><a href="https://websummit.com/speaker-application/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">websummit.com ↗</a></td>
@@ -1281,6 +1288,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $Travel + stipend</span></td>
           <td>Philip, Patricio, Russ, Alex</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Web Summit" data-site-url="https://websummit.com/speaker-application/" data-site-fit="Philip, Patricio, Russ, Alex" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Conf</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Summit Series</strong><br><a href="https://summitseries.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">summitseries.com ↗</a><br><span class="badge badge-vz">Geo-block VZ</span></td>
@@ -1288,6 +1297,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $5K-15K+</span></td>
           <td>Philip, Russ, Patricio</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Summit Series" data-site-url="https://summitseries.com/" data-site-fit="Philip, Russ, Patricio" data-site-badges="<span class=&quot;badge badge-vz&quot;>Geo-block VZ</span> <span class=&quot;badge badge-in&quot;>In · Curated</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>IEEE International Leadership Conf</strong><br><a href="https://life.ieee.org/call-for-speakers-2026-ieee-international-leadership-conference/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">life.ieee.org ↗</a></td>
@@ -1295,6 +1306,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $Travel + $1-3K honorarium</span></td>
           <td>Patricio, Russ, Philip</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="IEEE International Leadership Conf" data-site-url="https://life.ieee.org/call-for-speakers-2026-ieee-international-leadership-conference/" data-site-fit="Patricio, Russ, Philip" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Conf</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Salesforce Dreamforce</strong><br><a href="https://www.salesforce.com/dreamforce/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">salesforce.com/dreamforce ↗</a></td>
@@ -1302,6 +1315,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $Travel + $5K-15K</span></td>
           <td>Philip, Alex</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Salesforce Dreamforce" data-site-url="https://www.salesforce.com/dreamforce/" data-site-fit="Philip, Alex" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Mega</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Inbound (HubSpot)</strong><br><a href="https://www.inbound.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">inbound.com ↗</a></td>
@@ -1309,6 +1324,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $Travel + $3-10K</span></td>
           <td>Alex, Patricio, Philip</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Inbound (HubSpot)" data-site-url="https://www.inbound.com/" data-site-fit="Alex, Patricio, Philip" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Mega</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>SaaStr Annual</strong><br><a href="https://www.saastrannual.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">saastrannual.com ↗</a></td>
@@ -1316,6 +1333,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $Travel + $5-10K</span></td>
           <td>Philip, Patricio</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="SaaStr Annual" data-site-url="https://www.saastrannual.com/" data-site-fit="Philip, Patricio" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Conf</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Content Marketing World</strong><br><a href="https://www.contentmarketingworld.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">contentmarketingworld.com ↗</a></td>
@@ -1323,6 +1342,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $5-10K + travel</span></td>
           <td>Alex, Patricio</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Content Marketing World" data-site-url="https://www.contentmarketingworld.com/" data-site-fit="Alex, Patricio" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Conf</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Talks at GS (Goldman Sachs)</strong><br><a href="https://www.goldmansachs.com/insights/talks-at-gs" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">goldmansachs.com ↗</a></td>
@@ -1330,6 +1351,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$$ $15K-50K+</span></td>
           <td>Russ, Philip</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Talks at GS (Goldman Sachs)" data-site-url="https://www.goldmansachs.com/insights/talks-at-gs" data-site-fit="Russ, Philip" data-site-badges="<span class=&quot;badge badge-in&quot;>In · Curated</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Mastermind Talks</strong><br><a href="https://mastermindtalks.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">mastermindtalks.com ↗</a><br><span class="badge badge-vz">Geo-block VZ</span></td>
@@ -1337,6 +1360,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">$$ $5-15K + travel</span></td>
           <td>Philip, Russ, Patricio</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-curated" data-site-name="Mastermind Talks" data-site-url="https://mastermindtalks.com/" data-site-fit="Philip, Russ, Patricio" data-site-badges="<span class=&quot;badge badge-vz&quot;>Geo-block VZ</span> <span class=&quot;badge badge-in&quot;>In · Curated</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>6th Annual Construction MH Conf</strong><br><a href="https://www.unitesurvivors.com/construction-mental-health-wellbeing-conference" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">unitesurvivors.com ↗</a></td>
@@ -1344,6 +1369,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">💵 $Travel + stipend</span></td>
           <td>Angie</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="cfp-open" data-site-name="6th Annual Construction MH Conf" data-site-url="https://www.unitesurvivors.com/construction-mental-health-wellbeing-conference" data-site-fit="Angie" data-site-badges="<span class=&quot;badge badge-out&quot;>Out · Conf</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>AAS — American Association Suicidology</strong><br><a href="https://suicidology.org/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">suicidology.org ↗</a><br><span class="badge badge-vz">Geo-block VZ</span></td>
@@ -1351,6 +1378,8 @@
           <td><span class="badge badge-free">Free</span></td>
           <td><span class="payout-amount">💵 $Stipend $500-2K + travel</span></td>
           <td>Angie ⭐</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="community" data-site-name="AAS — American Association Suicidology" data-site-url="https://suicidology.org/" data-site-fit="Angie ⭐" data-site-badges="<span class=&quot;badge badge-vz&quot;>Geo-block VZ</span> <span class=&quot;badge badge-out&quot;>Out · Conf</span> <span class=&quot;badge badge-free&quot;>Free</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>Heartcast Media (podcast agency)</strong><br><a href="https://www.heartcastmedia.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">heartcastmedia.com ↗</a></td>
@@ -1358,6 +1387,8 @@
           <td><span class="badge badge-full">Full-service</span> $700-1,400/mes</td>
           <td><span class="payout-amount">Indirecto</span> (leads del podcasting)</td>
           <td>Alex, Russ, Philip</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="podcast-pitch" data-site-name="Heartcast Media (podcast agency)" data-site-url="https://www.heartcastmedia.com/" data-site-fit="Alex, Russ, Philip" data-site-badges="<span class=&quot;badge badge-pod&quot;>In · Agency</span> <span class=&quot;badge badge-full&quot;>Full-service</span>" type="button">+ Info</button></td>
         </tr>
         <tr class="featured">
           <td><strong>The Expert Bookers (podcast agency)</strong><br><a href="https://www.expertbookers.com/" target="_blank" style="color: var(--gold-400); font-size: 0.8125rem;">expertbookers.com ↗</a></td>
@@ -1365,6 +1396,8 @@
           <td><span class="badge badge-full">Full-service</span> $1,400+/mes</td>
           <td><span class="payout-amount">Indirecto</span> (leads)</td>
           <td>Alex, Russ, Philip</td>
+        
+          <td class="payout-info-cell"><button class="info-btn info-btn-sm" data-flow="podcast-pitch" data-site-name="The Expert Bookers (podcast agency)" data-site-url="https://www.expertbookers.com/" data-site-fit="Alex, Russ, Philip" data-site-badges="<span class=&quot;badge badge-pod&quot;>In · Agency</span> <span class=&quot;badge badge-full&quot;>Full-service</span>" type="button">+ Info</button></td>
         </tr>
       </tbody>
     </table>
@@ -3475,7 +3508,7 @@
   </div>
   <div class="footer-bottom">
     <div>© 2026 SpeakUp Express · Orlando FL · Curated by Mavis</div>
-    <div>Built for Jhon · SMM SpeakUp Express · v8.0 (responsive)</div>
+    <div>Built for Jhon · SMM SpeakUp Express · v9.0 (payouts modal)</div>
   </div>
 </footer>
 
@@ -3758,16 +3791,28 @@
   function openCardModal(btn) {
     try {
       const card = btn.closest('.cat-card');
-      if (!card) return;
       const flowKey = (btn.dataset && btn.dataset.flow) ? btn.dataset.flow : 'community';
       const info = flowInfo[flowKey] || flowInfo['community'];
-      const nameEl = card.querySelector('.cat-card-name');
-      const name = nameEl ? nameEl.textContent.replace('↗', '').trim() : 'Sitio';
-      const metaEl = card.querySelector('.cat-card-meta');
-      const meta = metaEl ? metaEl.innerHTML : '';
-      const href = card.getAttribute('href') || '#';
-      const badgeEls = card.querySelectorAll('.cat-card-badges .badge');
-      const badges = Array.from(badgeEls).map(function(b) { return b.outerHTML; }).join('');
+
+      let name, badges, meta, href;
+
+      if (card) {
+        // Modo cat-card: extraer de la card
+        const nameEl = card.querySelector('.cat-card-name');
+        name = nameEl ? nameEl.textContent.replace('↗', '').trim() : 'Sitio';
+        const metaEl = card.querySelector('.cat-card-meta');
+        meta = metaEl ? metaEl.innerHTML : '';
+        href = card.getAttribute('href') || '#';
+        const badgeEls = card.querySelectorAll('.cat-card-badges .badge');
+        badges = Array.from(badgeEls).map(function(b) { return b.outerHTML; }).join('');
+      } else {
+        // Modo standalone: leer de data-attrs del botón
+        name = (btn.dataset && btn.dataset.siteName) ? btn.dataset.siteName : 'Sitio';
+        meta = (btn.dataset && btn.dataset.siteFit) ? '<strong>Fit:</strong> ' + btn.dataset.siteFit : '';
+        href = (btn.dataset && btn.dataset.siteUrl) ? btn.dataset.siteUrl : '#';
+        badges = (btn.dataset && btn.dataset.siteBadges) ? btn.dataset.siteBadges : '';
+      }
+
       document.getElementById('modalTitle').textContent = name;
       document.getElementById('modalBadges').innerHTML = badges;
       const flowType = document.getElementById('modalFlowType');
@@ -3778,7 +3823,7 @@
       document.getElementById('modalTips').innerHTML = '<ul>' + info.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul>';
       document.getElementById('modalFit').innerHTML = meta || '<em>Sin fit específico</em>';
       const visitBtn = document.getElementById('modalVisitBtn');
-      if (href && href !== '#' && !href.includes('opacity')) {
+      if (href && href !== '#') {
         visitBtn.setAttribute('href', href);
         visitBtn.style.display = '';
       } else {
@@ -3879,4 +3924,5 @@
 
 </body>
 </html>
+
 
