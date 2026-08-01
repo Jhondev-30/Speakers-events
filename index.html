@@ -769,18 +769,179 @@
     font-size: 0.875rem;
   }
 
+  /* ─── HAMBURGER MENU (mobile) ─── */
+  .nav-hamburger {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(201, 161, 74, 0.3);
+    color: var(--paper-50);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.2s;
+  }
+  .nav-hamburger:hover { border-color: var(--gold-500); }
+  .nav-hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--gold-500);
+    transition: all 0.3s;
+  }
+  .nav-hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 20, 18, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    padding: 6rem 2rem 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    color: var(--paper-50);
+    text-decoration: none;
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(201, 161, 74, 0.15);
+    transition: color 0.2s;
+  }
+  .nav-mobile-menu a:hover { color: var(--gold-400); }
+
+  /* ─── RESPONSIVE BREAKPOINTS ─── */
+
+  /* Tablet & smaller: 1024px */
+  @media (max-width: 1024px) {
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .roster-grid { grid-template-columns: repeat(3, 1fr); }
+    .cat-header { grid-template-columns: 60px 1fr; gap: 1.5rem; }
+    .cat-num { font-size: 4.5rem; }
+    .profile-card { padding: 0; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+  }
+
+  /* Tablet: 900px (matches old breakpoint) */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
+    .nav-hamburger { display: flex; }
     .nav-links { display: none; }
+    .nav-cta-mini { display: none; }
     section { padding: 4rem 1.5rem; }
-    .hero { padding: 6rem 1.5rem 2rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .hero { padding: 6rem 1.5rem 2rem; min-height: auto; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding-top: 2rem; }
     .cat-header { grid-template-columns: 1fr; gap: 1rem; }
     .cat-num { font-size: 3.5rem; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .payout-table, .map-table { font-size: 0.8125rem; }
     .payout-table th, .payout-table td, .map-table th, .map-table td { padding: 0.75rem 0.5rem; }
     .filter-bar { padding: 1rem; }
+    .legend-grid { grid-template-columns: 1fr; }
+    .roster-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Mobile: 600px */
+  @media (max-width: 600px) {
+    body { font-size: 15px; }
+    nav { padding: 0.75rem 1rem; }
+    .nav-brand { font-size: 1rem; }
+    .nav-brand svg { width: 22px; height: 22px; }
+    section { padding: 3rem 1rem; }
+    .hero { padding: 5rem 1rem 2rem; }
+    .hero h1 { font-size: 1.875rem; line-height: 1.1; }
+    .hero h1 em { font-size: 1.5rem; }
+    .hero p.lead { font-size: 0.9375rem; }
+    .hero-scroll { display: none; }
+    .section-label { font-size: 0.6875rem; }
+    .section-title { font-size: 1.75rem; }
+
+    /* Cat grid: 1 col */
+    .cat-grid { grid-template-columns: 1fr; }
+    .cat-block { margin-bottom: 3rem; padding-bottom: 3rem; }
+    .cat-num { font-size: 2.75rem; }
+    .cat-title { font-size: 1.75rem; }
+
+    /* Cards más cómodas */
+    .cat-card { padding: 1.25rem; }
+    .cat-card-name { font-size: 1.0625rem; }
+    .cat-card-desc { font-size: 0.8125rem; }
+    .info-btn { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.65rem; font-size: 0.625rem; min-height: 32px; }
+
+    /* Roster: 1 col */
+    .roster-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .speaker-card { padding: 1.5rem; }
+    .speaker-card-name { font-size: 1.125rem; }
+
+    /* Filter bar: stack */
+    .filter-bar { padding: 0.75rem; flex-direction: column; align-items: stretch; }
+    .filter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .filter-chip { font-size: 0.75rem; padding: 0.4rem 0.7rem; }
+    .filter-mini { font-size: 0.6875rem; padding: 0.25rem 0.55rem; }
+    .filter-panel { grid-template-columns: 1fr; }
+    .filter-label { font-size: 0.6875rem; }
+    .filter-summary { margin-left: 0; text-align: center; margin-top: 0.5rem; }
+
+    /* Payout & Map tables: scroll horizontal */
+    .payout-section, .mapping { overflow-x: auto; }
+    .payout-table, .map-table { min-width: 700px; font-size: 0.75rem; }
+    .payout-table th, .payout-table td, .map-table th, .map-table td { padding: 0.625rem 0.5rem; }
+
+    /* Profiles */
+    .profile-header { grid-template-columns: auto 1fr; padding: 1rem; gap: 1rem; }
+    .profile-header .profile-toggle-icon { grid-column: 2; justify-self: end; }
+    .profile-monogram { width: 44px; height: 44px; font-size: 1.125rem; }
+    .profile-info-name { font-size: 1.0625rem; }
+    .profile-body, .profile-card.expanded .profile-body { padding-left: 1rem; padding-right: 1rem; }
+
+    /* Modal: fullscreen */
+    .modal-overlay { padding: 0; }
+    .modal { max-width: 100%; max-height: 100vh; height: 100vh; border-radius: 0; border: none; }
+    .modal-header, .modal-body, .modal-footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .modal-title { font-size: 1.4rem; }
+    .modal-section-label { font-size: 0.625rem; }
+    .modal-steps li { font-size: 0.875rem; padding: 0.625rem 0 0.625rem 2.25rem; }
+    .modal-steps li::before { width: 1.5rem; height: 1.5rem; font-size: 0.6875rem; }
+    .modal-tips li { font-size: 0.8125rem; }
+    .modal-btn { padding: 0.6rem 1.1rem; font-size: 0.8125rem; }
+
+    /* Footer */
+    footer { padding: 3rem 1rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; font-size: 0.75rem; }
+
+    /* Top notice */
+    .top-notice { padding: 0.75rem 1rem; font-size: 0.75rem; }
+  }
+
+  /* Mobile XS: 380px */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 1.625rem; }
+    .hero-stats { grid-template-columns: 1fr; gap: 1rem; }
+    .hero-stat-num { font-size: 2rem; }
+    .cat-card { padding: 1rem; }
+    .cat-card-badges .badge { font-size: 0.625rem; padding: 0.15rem 0.4rem; }
+    .modal-title { font-size: 1.25rem; }
+  }
+
+  /* Ultra-wide: 1920px+ */
+  @media (min-width: 1920px) {
+    body { font-size: 17px; }
+    section { padding: 6rem 4rem; }
+    .hero h1 { font-size: 5rem; }
+    .hero-stats { max-width: 1200px; }
   }
 
   /* ─── CARD INFO MODAL ─── */
@@ -848,7 +1009,7 @@
   .modal-btn-primary:hover { background: var(--gold-400); border-color: var(--gold-400); }
   .modal-btn-secondary { background: transparent; color: var(--paper-100); border-color: rgba(201, 161, 74, 0.3); }
   .modal-btn-secondary:hover { background: rgba(201, 161, 74, 0.1); border-color: var(--gold-500); }
-  @media (max-width: 600px) { .modal-overlay { padding: 1rem; } .modal-title { font-size: 1.4rem; } .modal-header, .modal-body, .modal-footer { padding-left: 1.25rem; padding-right: 1.25rem; } }
+
 </style>
 </head>
 <body>
@@ -872,7 +1033,19 @@
     <a href="#payouts">Payouts</a>
   </div>
   <a href="#catalog" class="nav-cta-mini">Ver 120+ sitios</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#roster" class="nav-mobile-link">Speakers</a>
+  <a href="#legend" class="nav-mobile-link">Cómo leer</a>
+  <a href="#catalog" class="nav-mobile-link">Catálogo</a>
+  <a href="#payouts" class="nav-mobile-link">Eventos pagos</a>
+  <a href="#payouts" class="nav-mobile-link">Payouts</a>
+  <a href="#catalog" class="nav-mobile-link" style="color: var(--gold-400); margin-top: 1rem;">→ Ver 120+ sitios</a>
+</div>
 
 <div class="top-notice">
   ⚠️ <strong>Geo-block Venezuela:</strong> 3 sitios (AAS, Summit Series, Mastermind Talks) bloquean acceso desde Venezuela pero funcionan para speakers en USA. Requerí VPN o pedile al speaker que confirme. <strong>6 sitios con problemas</strong> fueron deshabilitados o marcados con badge <span style="color: var(--terracotta);">⚠</span>.
@@ -884,7 +1057,7 @@
   <div class="hero-content">
     <div class="hero-meta">
       <span class="hero-meta-line"></span>
-      <span class="mono">Speaker Resources · 2026 · v5</span>
+      <span class="mono">Speaker Resources · 2026 · v8 (responsive)</span>
     </div>
     <h1>
       El <em>catálogo</em><br>
@@ -3302,7 +3475,7 @@
   </div>
   <div class="footer-bottom">
     <div>© 2026 SpeakUp Express · Orlando FL · Curated by Mavis</div>
-    <div>Built for Jhon · SMM SpeakUp Express · v7.0 (modal con flujos)</div>
+    <div>Built for Jhon · SMM SpeakUp Express · v8.0 (responsive)</div>
   </div>
 </footer>
 
@@ -3638,6 +3811,29 @@
     } catch (err) { console.error('Click handler error:', err); }
   });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCardModal(); });
+
+  // ─── HAMBURGER MENU ───
+  function toggleMobileMenu() {
+    const menu = document.getElementById('navMobileMenu');
+    const btn = document.getElementById('navHamburger');
+    if (menu) menu.classList.toggle('open');
+    if (btn) btn.classList.toggle('active');
+  }
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'navHamburger') {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMobileMenu();
+      return;
+    }
+    // Close mobile menu when clicking a link
+    if (e.target && e.target.classList && e.target.classList.contains('nav-mobile-link')) {
+      const menu = document.getElementById('navMobileMenu');
+      const btn = document.getElementById('navHamburger');
+      if (menu) menu.classList.remove('open');
+      if (btn) btn.classList.remove('active');
+    }
+  });
 
 </script>
 
