@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Speaker Resources — SpeakUp Express</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d1410'/><path d='M30 25h40v15a20 20 0 0 1-40 0V25z' fill='%23c9a14a'/><rect x='42' y='58' width='16' height='25' fill='%23c9a14a'/><circle cx='50' cy='88' r='5' fill='%23c9a14a'/><line x1='30' y1='20' x2='70' y2='20' stroke='%23c9a14a' stroke-width='2'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d1410'/><path d='M50 18a14 14 0 0 0-14 14v18a14 14 0 0 0 28 0V32a14 14 0 0 0-14-14z' fill='%23c9a14a'/><rect x='42' y='58' width='16' height='25' fill='%23c9a14a'/><circle cx='50' cy='88' r='5' fill='%23c9a14a'/><line x1='30' y1='20' x2='70' y2='20' stroke='%23c9a14a' stroke-width='2'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -968,7 +968,37 @@
   .info-btn:hover { background: var(--gold-500); color: var(--ink-900); transform: scale(1.05); }
   .info-btn-sm { position: static; padding: 0.25rem 0.5rem; font-size: 0.625rem; }
   .payout-info-cell { text-align: center; white-space: nowrap; width: 80px; }
+
+  /* ─── SEARCH + OUTREACH ─── */
+  .filter-bar-bottom { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
+  .filter-search { flex: 1; min-width: 240px; background: var(--ink-900); border: 1px solid rgba(201, 161, 74, 0.2); color: var(--paper-50); padding: 0.6rem 1rem; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.875rem; transition: all 0.2s; }
+  .filter-search:focus { outline: none; border-color: var(--gold-500); background: var(--ink-800); }
+  .filter-search::placeholder { color: rgba(245, 240, 230, 0.4); }
+  .outreach-toggle { background: transparent; color: var(--gold-400); border: 1px solid var(--gold-500); border-radius: 4px; padding: 0.6rem 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .outreach-toggle:hover { background: var(--gold-500); color: var(--ink-900); }
+  .outreach-toggle.has-items { background: var(--gold-500); color: var(--ink-900); }
   .cat-card { position: relative !important; }
+
+  .outreach-panel { position: fixed; bottom: 0; left: 0; right: 0; background: var(--ink-900); border-top: 2px solid var(--gold-500); z-index: 998; max-height: 50vh; overflow-y: auto; padding: 1.5rem; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5); display: none; }
+  .outreach-panel.open { display: block; }
+  .outreach-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(201, 161, 74, 0.15); }
+  .outreach-header h3 { font-family: 'Fraunces', serif; margin: 0; font-size: 1.25rem; }
+  .outreach-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+  .outreach-item { background: var(--ink-800); border: 1px solid rgba(201, 161, 74, 0.1); padding: 0.75rem 1rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+  .outreach-item-info { flex: 1; }
+  .outreach-item-name { font-size: 0.875rem; color: var(--paper-50); margin-bottom: 0.25rem; }
+  .outreach-item-status { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--gold-500); text-transform: uppercase; letter-spacing: 0.05em; }
+  .outreach-item-actions { display: flex; gap: 0.35rem; }
+  .outreach-item-btn { background: transparent; color: var(--paper-100); border: 1px solid rgba(201, 161, 74, 0.3); border-radius: 4px; padding: 0.25rem 0.5rem; font-size: 0.6875rem; cursor: pointer; transition: all 0.2s; }
+  .outreach-item-btn:hover { border-color: var(--gold-500); color: var(--gold-400); }
+  .outreach-item-btn.remove { color: var(--terracotta); border-color: var(--terracotta); }
+  .outreach-item-btn.remove:hover { background: var(--terracotta); color: var(--ink-900); }
+  .outreach-empty { text-align: center; padding: 2rem; color: var(--paper-100); opacity: 0.6; }
+
+  /* Add to Pipeline button on each card */
+  .add-to-pipeline { position: absolute; bottom: 0.75rem; right: 0.75rem; background: rgba(15, 30, 28, 0.85); backdrop-filter: blur(4px); color: var(--sage-soft); border: 1px solid var(--sage-soft); border-radius: 4px; padding: 0.3rem 0.55rem; font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; z-index: 4; transition: all 0.2s; }
+  .add-to-pipeline:hover { background: var(--sage-soft); color: var(--ink-900); }
+  .add-to-pipeline.added { background: var(--sage-soft); color: var(--ink-900); }
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(10, 20, 18, 0.85); backdrop-filter: blur(8px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 2rem; overflow-y: auto; }
   .modal-overlay.open { display: flex; }
@@ -1005,6 +1035,17 @@
   .modal-tips li::before { content: '◆'; position: absolute; left: 0; top: 0.4rem; color: var(--gold-500); font-size: 0.7rem; }
   .modal-fit { background: var(--ink-800); padding: 1rem 1.25rem; border-radius: 4px; color: var(--paper-100); font-size: 0.875rem; line-height: 1.5; }
   .modal-fit strong { color: var(--gold-400); }
+  .modal-pitch { background: var(--ink-800); padding: 1rem 1.25rem; border-radius: 4px; color: var(--paper-100); font-size: 0.875rem; line-height: 1.6; font-style: italic; border-left: 3px solid var(--copper-500); white-space: pre-wrap; }
+  .modal-copy-btn { margin-top: 0.5rem; padding: 0.4rem 0.85rem; background: transparent; color: var(--gold-400); border: 1px solid var(--gold-500); border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; }
+  .modal-copy-btn:hover { background: var(--gold-500); color: var(--ink-900); }
+  .modal-copy-btn.copied { background: var(--sage-soft); border-color: var(--sage-soft); color: var(--ink-900); }
+  .modal-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .modal-stat { background: var(--ink-800); padding: 0.85rem 1rem; border-radius: 4px; }
+  .modal-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-500); margin-bottom: 0.35rem; }
+  .modal-stat-value { color: var(--paper-50); font-size: 0.875rem; font-weight: 500; }
+  .modal-req-list { list-style: none; padding: 0; margin: 0; }
+  .modal-req-list li { padding: 0.4rem 0 0.4rem 1.5rem; position: relative; color: var(--paper-100); font-size: 0.875rem; }
+  .modal-req-list li::before { content: '✓'; position: absolute; left: 0; top: 0.4rem; color: var(--sage-soft); font-weight: 600; }
   .modal-footer { padding: 1.25rem 1.75rem; border-top: 1px solid rgba(201, 161, 74, 0.15); display: flex; gap: 0.75rem; justify-content: flex-end; }
   .modal-btn { padding: 0.7rem 1.4rem; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid; }
   .modal-btn-primary { background: var(--gold-500); color: var(--ink-900); border-color: var(--gold-500); }
@@ -1018,12 +1059,19 @@
 
 <nav>
   <div class="nav-brand">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100" height="100" rx="20" fill="#0d1410"/>
-      <path d="M30 25h40v15a20 20 0 0 1-40 0V25z" fill="#c9a14a"/>
-      <rect x="42" y="58" width="16" height="25" fill="#c9a14a"/>
-      <circle cx="50" cy="88" r="5" fill="#c9a14a"/>
-      <line x1="30" y1="20" x2="70" y2="20" stroke="#c9a14a" stroke-width="2"/>
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="SpeakUp Express logo">
+      <defs>
+        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#c9a14a"/>
+          <stop offset="100%" stop-color="#ce7f5a"/>
+        </linearGradient>
+      </defs>
+      <rect width="100" height="100" rx="22" fill="#0d1410"/>
+      <path d="M50 18a14 14 0 0 0-14 14v18a14 14 0 0 0 28 0V32a14 14 0 0 0-14-14z" fill="url(#logoGrad)"/>
+      <path d="M32 50v2a18 18 0 0 0 36 0v-2" fill="none" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="50" y1="70" x2="50" y2="80" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="42" y1="80" x2="58" y2="80" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="50" cy="32" r="3" fill="#0d1410" opacity="0.3"/>
     </svg>
     SpeakUp <span>Express</span>
   </div>
@@ -1059,7 +1107,7 @@
   <div class="hero-content">
     <div class="hero-meta">
       <span class="hero-meta-line"></span>
-      <span class="mono">Speaker Resources · 2026 · v10 (30 sitios nuevos)</span>
+      <span class="mono">Speaker Resources · 2026 · v12 (modal enriquecido + search + outreach + logo + estrategia + verification)</span>
     </div>
     <h1>
       El <em>catálogo</em><br>
@@ -1436,6 +1484,10 @@
           <span>Filtros</span> <span class="count" id="filterCount">0</span> <span class="arrow">▼</span>
         </button>
       </div>
+      <div class="filter-bar-bottom">
+        <input type="text" class="filter-search" id="filterSearch" placeholder="🔍 Buscar sitio por nombre o descripción..." />
+        <button class="outreach-toggle" id="outreachToggle" onclick="toggleOutreachPanel()" type="button">📋 Mi Pipeline (<span id="outreachCount">0</span>)</button>
+      </div>
 
       <div class="filter-panel" id="filterPanel">
         <div class="filter-panel-inner">
@@ -1541,7 +1593,8 @@
             <span class="badge badge-out">Out</span>
             <span class="badge badge-free">Free</span>
             <span class="badge badge-pay-free">Exposure</span>
-          </div>
+          
+            <span class="badge badge-bad" title="Sitio con problemas al verificar">⚠ Status</span></div>
           <div class="cat-card-name">Tech Conferences List (GitHub) <span class="arrow">↗</span></div>
           <div class="cat-card-meta"><strong>Fit:</strong> Patricio, Philip</div>
         </a>
@@ -1642,7 +1695,8 @@
             <span class="badge badge-in">In</span>
             <span class="badge badge-freemium">Apply</span>
             <span class="badge badge-pay-med">$$ Medio</span>
-          </div>
+          
+            <span class="badge badge-bad" title="Sitio con problemas al verificar">⚠ Status</span></div>
           <div class="cat-card-name">Lifeway Women Events <span class="arrow">↗</span></div>
           <div class="cat-card-desc">Priscilla Shirer, Jen Wilkin, Lysa TerKeurst. Top tier aspirational.</div>
           <div class="cat-card-meta"><strong>Fit:</strong> Angie, Angelie (aspirational top tier)</div>
@@ -1804,7 +1858,8 @@
             <span class="badge badge-free">Free</span>
             <span class="badge badge-pay-med">$$ Stipend</span>
             <span class="badge badge-vz">Geo-block VZ</span>
-          </div>
+          
+            <span class="badge badge-bad" title="Sitio con problemas al verificar">⚠ Status</span></div>
           <div class="cat-card-name">AAS — Suicidology <span class="arrow">↗</span></div>
           <div class="cat-card-desc">60th Annual · 11-15 abr 2027. Largest US conf.</div>
           <div class="cat-card-meta"><strong>Fit:</strong> Angie ⭐⭐</div>
@@ -1815,7 +1870,8 @@
             <span class="badge badge-in">In</span>
             <span class="badge badge-freemium">Member</span>
             <span class="badge badge-pay-free">Exposure</span>
-          </div>
+          
+            <span class="badge badge-bad" title="Sitio con problemas al verificar">⚠ Status</span></div>
           <div class="cat-card-name">IASP <span class="arrow">↗</span></div>
           <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
         </a>
@@ -2193,7 +2249,8 @@
             <span class="badge badge-in">In</span>
             <span class="badge badge-freemium">Member</span>
             <span class="badge badge-pay-free">Exposure</span>
-          </div>
+          
+            <span class="badge badge-bad" title="Sitio con problemas al verificar">⚠ Status</span></div>
           <div class="cat-card-name">Roses in the Ocean WSPD <span class="arrow">↗</span></div>
           <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
         </a>
@@ -2862,7 +2919,8 @@
             <span class="badge badge-in">In</span>
             <span class="badge badge-freemium">Member</span>
             <span class="badge badge-pay-free">Exposure</span>
-          </div>
+          
+            <span class="badge badge-bad" title="Sitio con problemas al verificar">⚠ Status</span></div>
           <div class="cat-card-name">IASP Lived Experience Network <span class="arrow">↗</span></div>
           <div class="cat-card-desc">International Association for Suicide Prevention. Lived experience roles.</div>
           <div class="cat-card-meta"><strong>Fit:</strong> Angie</div>
@@ -3819,8 +3877,8 @@
     <div class="footer-brand">
       <h3>
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect width="100" height="100" rx="20" fill="#0d1410"/>
-          <path d="M30 25h40v15a20 20 0 0 1-40 0V25z" fill="#c9a14a"/>
+          <rect width="100" height="100" rx="22" fill="#0d1410"/>
+          <path d="M50 18a14 14 0 0 0-14 14v18a14 14 0 0 0 28 0V32a14 14 0 0 0-14-14z" fill="#c9a14a"/>
           <rect x="42" y="58" width="16" height="25" fill="#c9a14a"/>
           <circle cx="50" cy="88" r="5" fill="#c9a14a"/>
           <line x1="30" y1="20" x2="70" y2="20" stroke="#c9a14a" stroke-width="2"/>
@@ -3852,7 +3910,7 @@
   </div>
   <div class="footer-bottom">
     <div>© 2026 SpeakUp Express · Orlando FL · Curated by Mavis</div>
-    <div>Built for Jhon · SMM SpeakUp Express · v10.0 (30 sitios nuevos)</div>
+    <div>Built for Jhon · SMM SpeakUp Express · v12.0 (modal enriquecido + search + outreach + logo + estrategia + verification)</div>
   </div>
 </footer>
 
@@ -4121,15 +4179,15 @@
 
   // ─── CARD INFO MODAL ───
   const flowInfo = {
-    'cfp-open': { label: 'CFP Abierto', class: 'flow-cfp-open', how: 'Cualquier speaker registrado puede aplicar a eventos con CFP (Call for Papers) abierto. El organizer revisa submissions y acepta las mejores.', steps: ['Crear cuenta gratis en la plataforma con email o social login (Google, LinkedIn).', 'Completar el speaker profile: foto profesional, bio 2-3 párrafos, topics, links.', 'Buscar eventos con CFP abierto en la sección "Discover" o filtrar por fecha/tema.', 'Hacer click en "Submit session" del evento, llenar título catchy + abstract de 150-300 palabras.', 'Adjuntar LinkedIn URL completo en el campo URL (los organizers lo piden explícitamente).', 'Esperar respuesta del organizer (típico: 4-12 semanas antes del evento). Confirmar disponibilidad si aceptan.'], tips: ['LinkedIn URL es obligatorio en Papercall y Sessionize. Sin esto, tu submission se descarta.', 'Submit entre 3-6 meses antes del evento. Últimas 2 semanas = saturado.', 'Reusa talks: una vez que tienes 3-5 talks bien escritos, los submites a 20+ eventos.', 'Habla con Jhon: él puede submitar por ti vía "Agent mode" si el evento lo permite.'] },
-    'cfp-curated': { label: 'CFP Curado · Competitivo', class: 'flow-cfp-curated', how: 'Eventos top-tier (Web Summit, Money 20/20, FinCon). El organizer selecciona speakers vía curaduría o invitación. Tasa de aceptación < 5%. Fee: $5-50K.', steps: ['Investigar el evento: ediciones pasadas, speakers previos, temas trending del año.', 'Construir tu "speaker brand": LinkedIn con 10K+ followers, talks en video, media kit profesional.', 'Esperar a que el organizer te invite o aplicar en su portal de speakers cuando abran.', 'Si aplican, enviar pitch custom: 1 página con tu talk único, por qué tú, por qué ahora.', 'Negociar fee: estos eventos pagan bien pero también requieren promo (usar tu audiencia para llenar tickets).', 'Coordinar logística: travel, hotel, A/V, slides, rehearsal. SpeakUp Express puede manejar todo esto.'], tips: ['No pierdas tiempo aplicando a <50 eventos top-tier. Construye track record en 5-10 medium-tier primero.', 'El fee se negocia. Rango típico keynote: $5-15K base + travel.', 'Necesitas media kit (PDF 2-3 páginas) con: bio corta/larga, fotos HD, talk topics, past gigs, testimonials.', 'Habla con Jhon para construir tu media kit y contactarte con organizers de eventos curados.'] },
-    'directory': { label: 'Directorio · Auto-Listing', class: 'flow-directory', how: 'Speaker crea perfil gratuito, llena bio + topics + fee range. Organizadores buscan en el directorio y contactan directo. 100% pasivo, sin submission.', steps: ['Ir al sitio del directorio (ej: allamericanspeakers.com, WomenSpeakers.com).', 'Buscar "Add speaker profile" o "Join as speaker" — algunos lo llaman "Get listed".', 'Llenar form largo: bio corta + larga, foto profesional, topics, past clients, fee range, demo video.', 'Subir media kit en PDF, 3-5 fotos HD, links a videos de talks pasados.', 'Esperar aprobación (1-4 semanas). Algunos directorios verifican antes de publicar.', 'Mantener perfil actualizado: cada nuevo talk o media mention = actualizar el perfil = más visible.'], tips: ['Directorios son long game: los primeros 6 meses casi no pasa nada. Después de 10-15 gigs en el perfil, llegan los bookings.', 'Foto profesional es NON-NEGOTIABLE. Selfies = no te contratan. Invierte $200-500 en photo shoot.', 'Fee range: si no tienes track record, pon $0 (voluntario) o $500-2K. Sube el fee después de 10+ bookings.', 'Habla con Jhon: él puede ayudarte a crear el media kit optimizado para estos directorios.'] },
-    'agency': { label: 'Agencia · Application + Screening', class: 'flow-agency', how: 'Speaker bureaus representan speakers established. Aplicación con screening, fee range $10K-100K. Agencia toma 20-30% commission.', steps: ['Ir al sitio de la agencia (ej: bigspeak.com, allamericanspeakers.com).', 'Buscar "Apply to be a speaker" o "Submit talent" — algunos lo esconden en el footer.', 'Llenar application: bio extendida, topics, fee range, past clients, video reels.', 'Submit press kit: clippings, TV appearances, book deals, corporate clients previos.', 'Esperar screening call (1-8 semanas). Las agencias top rechazan 95% de applications.', 'Si pasas, firmar contrato de representación. Fee range negociado, comisión 20-30% sobre bookings.'], tips: ['Agencias NO son para principiantes. Necesitas: 50+ gigs previos, media coverage, libro, o título establecido.', 'Si no tienes track record,目标是 directorio self-listing primero. Después vienes a agencias.', 'Comisión 20-30% es estándar. Si piden más del 35%, busca otra agencia.', 'SpeakUp Express tiene partnerships con agencias — pregúntale a Jhon si tu speaker califica.'] },
-    'podcast-match': { label: 'Podcast Match · Auto-Apply', class: 'flow-podcast-match', how: 'Speaker crea media one-sheet. Hosts buscan en la plataforma, hacen match, agenda directo. Sin outreach manual.', steps: ['Crear cuenta en la plataforma (PodMatch, PodMeUp, etc.).', 'Llenar "media one-sheet": foto, bio 50-200 palabras, topics, 3-5 talking points, links.', 'Configurar filtros de búsqueda: nichos, tamaño de audiencia, idioma.', 'Hosts ven tu perfil y te contactan. También tú puedes explorar hosts y aplicar.', 'Coordinar fecha de grabación via la plataforma. Mensajería interna automatiza el back-and-forth.', 'Grabar el episodio. Dejar review 5 estrellas mutua para subir reliability score.'], tips: ['Reliability score es clave: hosts filtran por >80% reliability. Cancela solo si es emergencia.', 'Media one-sheet con bullet points es mejor que párrafo largo. Hosts escanean en 10 segundos.', 'No cobrar por podcast appearances (a menos que audiencia 50K+). Exposure + back-links vale más.', 'Habla con Jhon: él puede darte un template de media one-sheet optimizado para conversion.'] },
-    'podcast-pitch': { label: 'Podcast Pitch · Asistido', class: 'flow-podcast-pitch', how: 'Plataformas como PodPitch, Interview Valet, Expert Bookers hacen outreach a hosts en nombre del speaker. Fee: mensual $19-1,400 o % sobre bookings.', steps: ['Contratar el servicio (suscripción mensual o por booking).', 'Llenar perfil completo: bio, topics, talking points, sample questions, links.', 'El servicio identifica hosts que encajan con tu nicho (tú no tienes que buscar).', 'Servicio envía pitch email con tu info a hosts. Algunos reportan replies, otros manejan todo.', 'Cuando host responde positivo, servicio agenda o tú agendar directo con el host.', 'Track results: la mayoría de servicios reportan # pitches enviados, # replies, # bookings.'], tips: ['PodPitch ($19/mo): bajo costo, haces el outreach tú mismo con sus templates. Bueno para empezar.', 'Interview Valet / Expert Bookers ($700-1,400/mo): full-service, ellos hacen todo. Bueno cuando ya tienes ingresos.', 'Roi típico: 1 booking de $2-5K después de 3-6 meses de servicio. No esperes overnight.', 'Habla con Jhon: él puede negociar tarifas y evaluar si el servicio vale la pena para tu speaker.'] },
-    'community': { label: 'Comunidad · Outreach Directo', class: 'flow-community', how: 'No es plataforma de speakers. Speaker contacta organizadores locales (meetup, chamber of commerce, rotary) y ofrece dar un talk. Voluntario o pequeño fee.', steps: ['Buscar grupos locales en la plataforma (meetup.com, Eventbrite search, rotary.org).', 'Filtrar por tema: leadership, business, women in tech, faith, wellness, etc.', 'Identificar 10-20 grupos activos en ciudades target. Mirar si ya traen speakers externos.', 'Contactar al organizer por email o DM: "Ofrezco dar un talk de 30-45 min sobre [topic] para su grupo".', 'Negociar: gratis (voluntario), a cambio de expo table, o fee pequeño $200-500.', 'Track quién te confirmó. Re-book a los grupos buenos (muchos speakers vuelven cada 6-12 meses).'], tips: ['Meetups son PERFECTOS para construir track record. 10 meetup talks = 10 bullets en tu bio.', 'NO contactes 50 grupos al mismo tiempo. Empieza con 5 grupos locales, da 2-3 talks, expande.', 'Llevar business cards y follow-up por LinkedIn con cada attendee. Long-term ROI.', 'Habla con Jhon: él puede ayudarte a identificar los meetups más activos y redactar el pitch email.'] },
-    'database': { label: 'Database · Búsqueda', class: 'flow-database', how: 'No es plataforma de speakers. Es base de datos para que TÚ (o Jhon) busquéis podcasts, shows, organizers, y luego contactéis directo.', steps: ['Ir al sitio (Rephonic, ListenNotes, Podchaser).', 'Buscar por keywords: tu nicho, tu ciudad target, o shows que encajen con tu audiencia.', 'Filtrar resultados por: audiencia, frecuencia, engagement, idioma, ubicación.', 'Exportar lista de hosts/emails. Algunos tienen API ($$), otros scraping manual.', 'Hacer outreach directo a cada host con tu pitch + media kit.', 'Track replies. Ajustar pitch según qué convierten. Repetir 10-20 pitches/mes.'], tips: ['Databases son research tools, no magic. Tú haces el trabajo de outreach.', 'Rephonic es el más completo pero $. ListenNotes tiene free tier limitado. Podchaser gratis con data limitada.', 'Habla con Jhon: él puede hacer este research y outreach systemático para tus speakers.'] },
-    'newsletter': { label: 'Newsletter · Leads Pasivos', class: 'flow-newsletter', how: 'Speaker se suscribe a newsletter semanal/mensual que curates oportunidades de speaking. Algunos son paid, otros free. Sin aplicación directa.', steps: ['Suscribirse a la newsletter con email principal.', 'Marcar emails como importantes y leer semanalmente.', 'Cada lead de la newsletter = evaluar fit y agregar a tu pipeline.', 'Aplicar a leads buenos dentro de 24-48h (los buenos se acaban rápido).', 'Track conversiones: cuántas opportunities aplicadas → cuántos bookings.'], tips: ['Newsletters son volume play. 10 newsletters activas = 50-100 leads/mes.', 'Las newsletters pagadas ($15-50/mes) suelen tener leads mejor curados. Free son más spam.', 'Habla con Jhon: él puede configurar filtros y armar tu inbox de oportunidades.'] }
+    'cfp-open': { label: 'CFP Abierto', class: 'flow-cfp-open', how: 'Cualquier speaker registrado puede aplicar a eventos con CFP (Call for Papers) abierto. El organizer revisa submissions y acepta las mejores.', steps: ['Crear cuenta gratis en la plataforma con email o social login (Google, LinkedIn).', 'Completar el speaker profile: foto profesional, bio 2-3 parrafos, topics, links.', 'Buscar eventos con CFP abierto en la seccion Discover o filtrar por fecha/tema.', 'Hacer click en Submit session del evento, llenar titulo catchy y abstract de 150-300 palabras.', 'Adjuntar LinkedIn URL completo en el campo URL (los organizers lo piden explicitamente).', 'Esperar respuesta del organizer (tipico: 4-12 semanas antes del evento). Confirmar disponibilidad si aceptan.'], tips: ['LinkedIn URL es obligatorio en Papercall y Sessionize. Sin esto, tu submission se descarta.', 'Submit entre 3-6 meses antes del evento. Ultimas 2 semanas = saturado.', 'Reusa talks: una vez que tienes 3-5 talks bien escritos, los submites a 20+ eventos.', 'Habla con Jhon: el puede submitar por ti via Agent mode si el evento lo permite.'], pitch: "Hi [organizer name], I would love to speak at [event name] about [topic]. My background: [1-2 sentences on credentials]. I have a unique take on [specific angle] that your audience would value. Happy to share my talk abstract and bio. Best, [name]", requirements: ["LinkedIn URL (mandatory)", "Speaker bio 2-3 paragraphs", "Talk title + abstract 150-300 words", "Photo 500x500+"], responseTime: "2-6 weeks", successRate: "20-40% (varies by event size)" },
+    'cfp-curated': { label: 'CFP Curado - Competitivo', class: 'flow-cfp-curated', how: 'Eventos top-tier (Web Summit, Money 20/20, FinCon). El organizer selecciona speakers via curaduria o invitacion. Tasa de aceptacion < 5%. Fee: $5-50K.', steps: ['Investigar el evento: ediciones pasadas, speakers previos, temas trending del ano.', 'Construir tu speaker brand: LinkedIn con 10K+ followers, talks en video, media kit profesional.', 'Esperar a que el organizer te invite o aplicar en su portal de speakers cuando abran.', 'Si aplican, enviar pitch custom: 1 pagina con tu talk unico, por que tu, por que ahora.', 'Negociar fee: estos eventos pagan bien pero tambien requieren promo (usar tu audiencia para llenar tickets).', 'Coordinar logistica: travel, hotel, A/V, slides, rehearsal. SpeakUp Express puede manejar todo esto.'], tips: ['No pierdas tiempo aplicando a <50 eventos top-tier. Construye track record en 5-10 medium-tier primero.', 'El fee se negocia. Rango tipico keynote: $5-15K base + travel.', 'Necesitas media kit (PDF 2-3 paginas) con: bio corta/larga, fotos HD, talk topics, past gigs, testimonials.', 'Habla con Jhon para construir tu media kit y contactarte con organizers de eventos curados.'], pitch: "Dear [curator name], I am a [credential] who has [specific achievement]. I would bring unique value to [event] with a talk on [topic] - [1-line description of unique angle]. My work has been featured in [media]. I would be honored to contribute. Best, [name]", requirements: ["Media kit (PDF)", "Demo video 2-3 min", "Past speaking clips", "Press coverage / book / notable clients"], responseTime: "4-12 weeks", successRate: "<5% (highly competitive)" },
+    'directory': { label: 'Directorio - Auto-Listing', class: 'flow-directory', how: 'Speaker crea perfil gratuito, llena bio + topics + fee range. Organizadores buscan en el directorio y contactan directo. 100% pasivo, sin submission.', steps: ['Ir al sitio del directorio (ej: allamericanspeakers.com, WomenSpeakers.com).', 'Buscar Add speaker profile o Join as speaker - algunos lo llaman Get listed.', 'Llenar form largo: bio corta + larga, foto profesional, topics, past clients, fee range, demo video.', 'Subir media kit en PDF, 3-5 fotos HD, links a videos de talks pasados.', 'Esperar aprobacion (1-4 semanas). Algunos directorios verifican antes de publicar.', 'Mantener perfil actualizado: cada nuevo talk o media mention = actualizar el perfil = mas visible.'], tips: ['Directorios son long game: los primeros 6 meses casi no pasa nada. Despues de 10-15 gigs en el perfil, llegan los bookings.', 'Foto profesional es NON-NEGOTIABLE. Selfies = no te contratan. Invierte $200-500 en photo shoot.', 'Fee range: si no tienes track record, pon $0 (voluntario) o $500-2K. Sube el fee despues de 10+ bookings.', 'Habla con Jhon: el puede ayudarte a crear el media kit optimizado para estos directorios.'], pitch: "No pitch needed - speaker creates a profile and organizers contact you inbound. Quality of profile matters: professional photo, detailed bio, specific topics, clear fee range.", requirements: ["Professional headshot (not selfie)", "Bio 200-500 words", "Topics list (5-10)", "Fee range", "Demo video (1-2 min)"], responseTime: "1-4 weeks for approval, then inbound leads vary", successRate: "Slow start (6+ months), then 1-3 bookings/month once established" },
+    'agency': { label: 'Agencia - Application + Screening', class: 'flow-agency', how: 'Speaker bureaus representan speakers established. Aplicacion con screening, fee range $10K-100K. Agencia toma 20-30% commission.', steps: ['Ir al sitio de la agencia (ej: bigspeak.com, allamericanspeakers.com).', 'Buscar Apply to be a speaker o Submit talent - algunos lo esconden en el footer.', 'Llenar application: bio extendida, topics, fee range, past clients, video reels.', 'Submit press kit: clippings, TV appearances, book deals, corporate clients previos.', 'Esperar screening call (1-8 semanas). Las agencias top rechazan 95% de applications.', 'Si pasas, firmar contrato de representacion. Fee range negociado, comision 20-30% sobre bookings.'], tips: ['Agencias NO son para principiantes. Necesitas: 50+ gigs previos, media coverage, libro, o titulo establecido.', 'Si no tienes track record, objetivo es directorio self-listing primero. Despues vienes a agencias.', 'Comision 20-30% es estandar. Si piden mas del 35%, busca otra agencia.', 'SpeakUp Express tiene partnerships con agencias - preguntale a Jhon si tu speaker califica.'], pitch: "Application-based - agency reviews your materials. They decide to represent you. Focus on: press kit, demo reel, notable past gigs, unique niche.", requirements: ["Press kit / media bio", "Demo reel 3-5 min", "Past client list", "Notable achievements (book, TV, 50+ gigs)", "Unique positioning"], responseTime: "2-8 weeks for screening call", successRate: "5-15% (top agencies reject 85-95%)" },
+    'podcast-match': { label: 'Podcast Match - Auto-Apply', class: 'flow-podcast-match', how: 'Speaker crea media one-sheet. Hosts buscan en la plataforma, hacen match, agenda directo. Sin outreach manual.', steps: ['Crear cuenta en la plataforma (PodMatch, PodMeUp, etc.).', 'Llenar media one-sheet: foto, bio 50-200 palabras, topics, 3-5 talking points, links.', 'Configurar filtros de busqueda: nichos, tamano de audiencia, idioma.', 'Hosts ven tu perfil y te contactan. Tambien tu puedes explorar hosts y aplicar.', 'Coordinar fecha de grabacion via la plataforma. Mensajeria interna automatiza el back-and-forth.', 'Grabar el episodio. Dejar review 5 estrellas mutua para subir reliability score.'], tips: ['Reliability score es clave: hosts filtran por >80% reliability. Cancela solo si es emergencia.', 'Media one-sheet con bullet points es mejor que parrafo largo. Hosts escanean en 10 segundos.', 'No cobrar por podcast appearances (a menos que audiencia 50K+). Exposure + back-links vale mas.', 'Habla con Jhon: el puede darte un template de media one-sheet optimizado para conversion.'], pitch: "Platform handles matching. Your media one-sheet IS your pitch. Optimize: short bio, 3-5 talking points, 2-3 sample questions, links to past episodes.", requirements: ["Media one-sheet (1 page)", "Headshot", "Bio 50-150 words", "3-5 talking points", "2-3 sample questions", "Links to past episodes"], responseTime: "Days to weeks (platform-dependent)", successRate: "60-80% acceptance if profile is strong" },
+    'podcast-pitch': { label: 'Podcast Pitch - Asistido', class: 'flow-podcast-pitch', how: 'Plataformas como PodPitch, Interview Valet, Expert Bookers hacen outreach a hosts en nombre del speaker. Fee: mensual $19-1,400 o % sobre bookings.', steps: ['Contratar el servicio (suscripcion mensual o por booking).', 'Llenar perfil completo: bio, topics, talking points, sample questions, links.', 'El servicio identifica hosts que encajan con tu nicho (tu no tienes que buscar).', 'Servicio envia pitch email con tu info a hosts. Algunos reportan replies, otros manejan todo.', 'Cuando host responde positivo, servicio agenda o tu agendar directo con el host.', 'Track results: la mayoria de servicios reportan # pitches enviados, # replies, # bookings.'], tips: ['PodPitch ($19/mo): bajo costo, haces el outreach tu mismo con sus templates. Bueno para empezar.', 'Interview Valet / Expert Bookers ($700-1,400/mo): full-service, ellos hacen todo. Bueno cuando ya tienes ingresos.', 'Roi tipico: 1 booking de $2-5K despues de 3-6 meses de servicio. No esperes overnight.', 'Habla con Jhon: el puede negociar tarifas y evaluar si el servicio vale la pena para tu speaker.'], pitch: "Service handles the outreach. You provide: bio, topics, sample questions, value proposition. They send to 50-200 hosts/month. You reply to positive responses.", requirements: ["Bio 100-200 words", "3-5 topics", "Sample questions for each topic", "Headshot", "Website or LinkedIn"], responseTime: "2-6 weeks per campaign", successRate: "5-15% reply rate, 1-3% booking rate" },
+    'community': { label: 'Comunidad - Outreach Directo', class: 'flow-community', how: 'No es plataforma de speakers. Speaker contacta organizadores locales (meetup, chamber of commerce, rotary) y ofrece dar un talk. Voluntario o pequeno fee.', steps: ['Buscar grupos locales en la plataforma (meetup.com, Eventbrite search, rotary.org).', 'Filtrar por tema: leadership, business, women in tech, faith, wellness, etc.', 'Identificar 10-20 grupos activos en ciudades target. Mirar si ya traen speakers externos.', 'Contactar al organizer por email o DM: Ofrezco dar un talk de 30-45 min sobre topic para su grupo.', 'Negociar: gratis (voluntario), a cambio de expo table, o fee pequeno $200-500.', 'Track quien te confirmo. Re-book a los grupos buenos (muchos speakers vuelven cada 6-12 meses).'], tips: ['Meetups son PERFECTOS para construir track record. 10 meetup talks = 10 bullets en tu bio.', 'NO contactes 50 grupos al mismo tiempo. Empieza con 5 grupos locales, da 2-3 talks, expande.', 'Llevar business cards y follow-up por LinkedIn con cada attendee. Long-term ROI.', 'Habla con Jhon: el puede ayudarte a identificar los meetups mas activos y redactar el pitch email.'], pitch: "Hi [organizer name], I am a [credential] specializing in [topic]. I would love to give a 30-45 min talk for your group on [specific title]. I can do in-person or virtual. No fee required for the first time. Would your group be interested? Best, [name]", requirements: ["Bio 100 words", "2-3 talk topic ideas", "Email signature with links"], responseTime: "1-2 weeks", successRate: "30-50% for established groups" },
+    'database': { label: 'Database - Busqueda', class: 'flow-database', how: 'No es plataforma de speakers. Es base de datos para que TU (o Jhon) busqueis podcasts, shows, organizers, y luego contacteis directo.', steps: ['Ir al sitio (Rephonic, ListenNotes, Podchaser).', 'Buscar por keywords: tu nicho, tu ciudad target, o shows que encajen con tu audiencia.', 'Filtrar resultados por: audiencia, frecuencia, engagement, idioma, ubicacion.', 'Exportar lista de hosts/emails. Algunos tienen API ($$), otros scraping manual.', 'Hacer outreach directo a cada host con tu pitch + media kit.', 'Track replies. Ajustar pitch segun que convierten. Repetir 10-20 pitches/mes.'], tips: ['Databases son research tools, no magic. Tu haces el trabajo de outreach.', 'Rephonic es el mas completo pero $$. ListenNotes tiene free tier limitado. Podchaser gratis con data limitada.', 'Habla con Jhon: el puede hacer este research y outreach sistematico para tus speakers.'], pitch: "Hi [host name], I am a [credential] with expertise in [topic]. I would be a great fit for [show name] because [specific reason - your audience overlap / unique angle]. I have done [X] episodes and my work has been featured in [media]. Would you be open to a conversation? Best, [name]", requirements: ["Media kit or one-sheet", "3 sample questions tailored to each show", "Past episode links (if any)"], responseTime: "1-4 weeks", successRate: "5-15% reply rate, 1-3% booking rate" },
+    'newsletter': { label: 'Newsletter - Leads Pasivos', class: 'flow-newsletter', how: 'Speaker se suscribe a newsletter semanal/mensual que curates oportunidades de speaking. Algunos son paid, otros free. Sin aplicacion directa.', steps: ['Suscribirse a la newsletter con email principal.', 'Marcar emails como importantes y leer semanalmente.', 'Cada lead de la newsletter = evaluar fit y agregar a tu pipeline.', 'Aplicar a leads buenos dentro de 24-48h (los buenos se acaban rapido).', 'Track conversiones: cuantas opportunities aplicadas a cuantos bookings.'], tips: ['Newsletters son volume play. 10 newsletters activas = 50-100 leads/mes.', 'Las newsletters pagadas ($15-50/mes) suelen tener leads mejor curados. Free son mas spam.', 'Habla con Jhon: el puede configurar filtros y armar tu inbox de oportunidades.'], pitch: "No pitch - newsletter curates opportunities. Subscribe, track leads, apply within 24-48h.", requirements: ["Active email monitoring", "Lead tracking spreadsheet"], responseTime: "N/A", successRate: "10-30% of leads applied to convert to gigs" }
   };
 
   function openCardModal(btn) {
@@ -4166,6 +4224,17 @@
       document.getElementById('modalSteps').innerHTML = info.steps.map(function(s) { return '<li>' + s + '</li>'; }).join('');
       document.getElementById('modalTips').innerHTML = '<ul>' + info.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul>';
       document.getElementById('modalFit').innerHTML = meta || '<em>Sin fit específico</em>';
+      // Debug: show what we have
+      try {
+        var pitchEl = document.getElementById('modalPitch');
+        var respEl = document.getElementById('modalResponseTime');
+        var succEl = document.getElementById('modalSuccessRate');
+        var reqEl = document.getElementById('modalRequirements');
+        if (pitchEl) pitchEl.textContent = info.pitch || 'NO_PITCH';
+        if (respEl) respEl.textContent = info.responseTime || 'NO_RT';
+        if (succEl) succEl.textContent = info.successRate || 'NO_SR';
+        if (reqEl) reqEl.innerHTML = (info.requirements || []).map(function(r) { return '<li>' + r + '</li>'; }).join('');
+      } catch(e) { console.error('debug:', e); }
       const visitBtn = document.getElementById('modalVisitBtn');
       if (href && href !== '#') {
         visitBtn.setAttribute('href', href);
@@ -4175,8 +4244,36 @@
       }
       document.getElementById('modalOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
+
+      // Reset pipeline button state
+      const pipelineBtn = document.getElementById('modalAddToPipeline');
+      const outreach = loadOutreach();
+      if (pipelineBtn) {
+        if (outreach[href]) {
+          pipelineBtn.textContent = '✓ En pipeline';
+          pipelineBtn.classList.add('added');
+          pipelineBtn.disabled = true;
+        } else {
+          pipelineBtn.textContent = '+ Pipeline';
+          pipelineBtn.classList.remove('added');
+          pipelineBtn.disabled = false;
+        }
+      }
     } catch (err) {
       console.error('openCardModal error:', err);
+    }
+  }
+
+  // Add current modal site to pipeline
+  function addCurrentToPipeline() {
+    const visitBtn = document.getElementById('modalVisitBtn');
+    const title = document.getElementById('modalTitle');
+    if (!visitBtn) return;
+    const url = visitBtn.getAttribute('href') || '#';
+    const name = title ? title.textContent : 'Sitio';
+    if (addToOutreach(name, url, 'modal')) {
+      const btn = document.getElementById('modalAddToPipeline');
+      if (btn) { btn.textContent = '✓ En pipeline'; btn.classList.add('added'); btn.disabled = true; }
     }
   }
 
@@ -4200,6 +4297,164 @@
     } catch (err) { console.error('Click handler error:', err); }
   });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCardModal(); });
+
+  // Copy pitch template
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'modalCopyBtn') {
+      const pitchEl = document.getElementById('modalPitch');
+      const text = pitchEl ? pitchEl.textContent : '';
+      if (navigator.clipboard && text) {
+        navigator.clipboard.writeText(text).then(function() {
+          e.target.textContent = '✓ Copiado';
+          e.target.classList.add('copied');
+          setTimeout(function() { e.target.textContent = 'Copiar'; e.target.classList.remove('copied'); }, 2000);
+        });
+      } else {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (err) {}
+        document.body.removeChild(ta);
+        e.target.textContent = '✓ Copiado';
+        setTimeout(function() { e.target.textContent = 'Copiar'; }, 2000);
+      }
+    }
+  });
+
+  // ─── SEARCH FILTER ───
+  let searchTerm = '';
+  const searchInput = document.getElementById('filterSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+      searchTerm = (e.target.value || '').toLowerCase().trim();
+      applySearchFilter();
+    });
+  }
+  function applySearchFilter() {
+    const cards = document.querySelectorAll('.cat-card');
+    cards.forEach(function(card) {
+      if (!searchTerm) {
+        card.classList.remove('search-hidden');
+        return;
+      }
+      const name = (card.querySelector('.cat-card-name')?.textContent || '').toLowerCase();
+      const desc = (card.querySelector('.cat-card-desc')?.textContent || '').toLowerCase();
+      if (name.includes(searchTerm) || desc.includes(searchTerm)) {
+        card.classList.remove('search-hidden');
+      } else {
+        card.classList.add('search-hidden');
+      }
+    });
+    // Update summary
+    const visible = document.querySelectorAll('.cat-card:not(.search-hidden)').length;
+    const summary = document.getElementById('filterSummary');
+    if (summary && searchTerm) {
+      const baseText = summary.innerHTML;
+      if (baseText.indexOf('🔍') < 0) {
+        summary.innerHTML = '🔍 "' + searchTerm + '" · ' + visible + ' sitios · ' + baseText;
+      }
+    }
+  }
+
+  // ─── OUTREACH TRACKER (localStorage) ───
+  const OUTREACH_KEY = 'speakup_outreach_v1';
+  function loadOutreach() {
+    try { return JSON.parse(localStorage.getItem(OUTREACH_KEY) || '{}'); } catch (e) { return {}; }
+  }
+  function saveOutreach(data) {
+    try { localStorage.setItem(OUTREACH_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+  function addToOutreach(name, url, source) {
+    const data = loadOutreach();
+    if (data[url]) return false; // ya existe
+    data[url] = { name: name, url: url, status: 'interested', added: new Date().toISOString(), source: source || 'manual' };
+    saveOutreach(data);
+    renderOutreach();
+    return true;
+  }
+  function removeFromOutreach(url) {
+    const data = loadOutreach();
+    delete data[url];
+    saveOutreach(data);
+    renderOutreach();
+  }
+  function updateOutreachStatus(url, status) {
+    const data = loadOutreach();
+    if (data[url]) { data[url].status = status; data[url].updated = new Date().toISOString(); }
+    saveOutreach(data);
+    renderOutreach();
+  }
+  function clearAllOutreach() {
+    if (confirm('Borrar todo el pipeline? Esta accion no se puede deshacer.')) {
+      localStorage.removeItem(OUTREACH_KEY);
+      renderOutreach();
+    }
+  }
+  function renderOutreach() {
+    const data = loadOutreach();
+    const list = document.getElementById('outreachList');
+    const countEl = document.getElementById('outreachCount');
+    const statsEl = document.getElementById('outreachStats');
+    const toggle = document.getElementById('outreachToggle');
+    const entries = Object.values(data);
+    const total = entries.length;
+    if (countEl) countEl.textContent = total;
+    if (toggle) toggle.classList.toggle('has-items', total > 0);
+    if (statsEl) {
+      const s = {interested:0, applied:0, booked:0, rejected:0};
+      entries.forEach(function(e) { s[e.status] = (s[e.status] || 0) + 1; });
+      statsEl.textContent = 'Interested: ' + s.interested + ' · Applied: ' + s.applied + ' · Booked: ' + s.booked + ' · Rejected: ' + s.rejected;
+    }
+    if (!list) return;
+    if (total === 0) {
+      list.innerHTML = '<div class="outreach-empty">Tu pipeline esta vacio. Click en "+ Pipeline" en cualquier card para agregarlo.</div>';
+      return;
+    }
+    list.innerHTML = entries.map(function(e) {
+      return '<div class="outreach-item">' +
+        '<div class="outreach-item-info">' +
+        '<div class="outreach-item-name">' + e.name + '</div>' +
+        '<div class="outreach-item-status">' + e.status + ' · ' + (e.added ? new Date(e.added).toLocaleDateString() : '') + '</div>' +
+        '</div>' +
+        '<div class="outreach-item-actions">' +
+        '<button class="outreach-item-btn" onclick="updateOutreachStatus(\'' + e.url + '\', \'applied\')" title="Marcar Applied">A</button>' +
+        '<button class="outreach-item-btn" onclick="updateOutreachStatus(\'' + e.url + '\', \'booked\')" title="Marcar Booked">B</button>' +
+        '<button class="outreach-item-btn" onclick="updateOutreachStatus(\'' + e.url + '\', \'rejected\')" title="Marcar Rejected">R</button>' +
+        '<a class="outreach-item-btn" href="' + e.url + '" target="_blank" title="Abrir">↗</a>' +
+        '<button class="outreach-item-btn remove" onclick="removeFromOutreach(\'' + e.url + '\')" title="Quitar">×</button>' +
+        '</div>' +
+        '</div>';
+    }).join('');
+  }
+  function toggleOutreachPanel() {
+    const panel = document.getElementById('outreachPanel');
+    if (panel) panel.classList.toggle('open');
+  }
+  function addCardToPipeline(btn) {
+    const card = btn.closest('.cat-card');
+    if (!card) return;
+    const name = card.querySelector('.cat-card-name')?.textContent.replace('↗', '').trim() || 'Sitio';
+    const url = card.getAttribute('href') || '#';
+    if (addToOutreach(name, url, 'card')) {
+      btn.textContent = '✓ En pipeline';
+      btn.classList.add('added');
+    }
+  }
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', renderOutreach);
+  if (document.readyState !== 'loading') renderOutreach();
+
+  // Search bar enter key: scroll to first match
+  if (searchInput) {
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const first = document.querySelector('.cat-card:not(.search-hidden)');
+        if (first) first.scrollIntoView({behavior: 'smooth', block: 'center'});
+      }
+    });
+  }
 
   // ─── HAMBURGER MENU ───
   function toggleMobileMenu() {
@@ -4258,16 +4513,53 @@
         <div class="modal-section-label">Fit con nuestros speakers</div>
         <div class="modal-fit" id="modalFit"></div>
       </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Pitch template (copiar y personalizar)</div>
+        <div class="modal-pitch" id="modalPitch"></div>
+        <button class="modal-copy-btn" id="modalCopyBtn" type="button">Copiar</button>
+      </div>
+      <div class="modal-section modal-stats-grid">
+        <div class="modal-stat">
+          <div class="modal-stat-label">⏱ Response time</div>
+          <div class="modal-stat-value" id="modalResponseTime">—</div>
+        </div>
+        <div class="modal-stat">
+          <div class="modal-stat-label">📈 Success rate</div>
+          <div class="modal-stat-value" id="modalSuccessRate">—</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Requisitos típicos</div>
+        <ul class="modal-req-list" id="modalRequirements"></ul>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="modal-btn modal-btn-secondary modal-close">Cerrar</button>
+      <button class="modal-btn modal-btn-secondary" id="modalAddToPipeline" onclick="addCurrentToPipeline()" type="button">+ Pipeline</button>
       <a href="#" id="modalVisitBtn" target="_blank" class="modal-btn modal-btn-primary">Ir al sitio ↗</a>
     </div>
   </div>
 </div>
 
+<!-- OUTREACH PANEL -->
+<div class="outreach-panel" id="outreachPanel">
+  <div class="outreach-header">
+    <h3>📋 Mi Pipeline de Outreach</h3>
+    <div>
+      <span id="outreachStats" style="margin-right: 1rem; color: var(--paper-100); font-size: 0.875rem;"></span>
+      <button onclick="clearAllOutreach()" style="background: transparent; color: var(--terracotta); border: 1px solid var(--terracotta); border-radius: 4px; padding: 0.4rem 0.85rem; font-size: 0.75rem; cursor: pointer;">Limpiar todo</button>
+      <button onclick="toggleOutreachPanel()" style="background: transparent; color: var(--paper-100); border: 1px solid rgba(201, 161, 74, 0.3); border-radius: 4px; padding: 0.4rem 0.85rem; font-size: 0.75rem; cursor: pointer; margin-left: 0.5rem;">Cerrar ✕</button>
+    </div>
+  </div>
+  <div class="outreach-list" id="outreachList"></div>
+</div>
+
 </body>
 </html>
+
+
+
+
 
 
 
