@@ -5760,6 +5760,21 @@
       const code = chip.getAttribute('data-filter');
       return code === 'ALL' ? null : code;
     };
+    // Scroll to first visible cat-card after a filter change
+    function scrollToFirstCard() {
+      setTimeout(function() {
+        const first = document.querySelector('.cat-card:not([style*="display: none"])');
+        if (first) {
+          // Find parent cat-block for context
+          const block = first.closest('.cat-block');
+          const target = block || first;
+          const headerOffset = 80;
+          const rect = target.getBoundingClientRect();
+          const absoluteTop = window.pageYOffset + rect.top - headerOffset;
+          window.scrollTo({top: absoluteTop, behavior: 'smooth'});
+        }
+      }, 200);
+    }
     function readParams() {
       const p = new URLSearchParams(window.location.search);
       return {
@@ -5806,24 +5821,30 @@
       // Speaker filter
       if (f.speaker && typeof filterBySpeaker === 'function') {
         // Wrap in setTimeout to ensure DOM is ready
-        setTimeout(function() { filterBySpeaker(f.speaker); }, 0);
+        setTimeout(function() { filterBySpeaker(f.speaker); scrollToFirstCard(); }, 50);
       }
       // Type/Cost/Pay/Extra — toggle each one
       ['type', 'cost', 'pay', 'extra'].forEach(function(cat) {
         f[cat].forEach(function(val) {
           if (typeof toggleFilter === 'function') {
-            setTimeout(function() { toggleFilter(cat, val); }, 0);
+            setTimeout(function() { toggleFilter(cat, val); }, 50);
           }
         });
       });
+      if (f.types.length || f.cost.length || f.pay.length || f.extra.length) {
+        scrollToFirstCard();
+      }
     }
     // Hook chip clicks to write URL after state change
     document.addEventListener('click', function(e) {
       const chip = e.target && e.target.closest && e.target.closest('.filter-chip');
       if (chip) {
-        // Wait for filterBySpeaker to finish updating activeFilter
+        // Wait for filterBySpeaker to finish updating activeFilter, then scroll
         setTimeout(function() {
           writeParams(typeof activeFilter !== 'undefined' ? activeFilter : null);
+          // Only auto-scroll for speaker filter, not ALL (clear)
+          const code = chip.getAttribute('data-filter');
+          if (code !== 'ALL') scrollToFirstCard();
         }, 0);
         return;
       }
