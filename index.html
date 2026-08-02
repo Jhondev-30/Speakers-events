@@ -979,26 +979,37 @@
   .outreach-toggle.has-items { background: var(--gold-500); color: var(--ink-900); }
   .cat-card { position: relative !important; }
 
-  .outreach-panel { position: fixed; bottom: 0; left: 0; right: 0; background: var(--ink-900); border-top: 2px solid var(--gold-500); z-index: 998; max-height: 50vh; overflow-y: auto; padding: 1.5rem; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5); display: none; }
-  .outreach-panel.open { display: block; }
-  .outreach-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(201, 161, 74, 0.15); }
-  .outreach-header h3 { font-family: 'Fraunces', serif; margin: 0; font-size: 1.25rem; }
-  .outreach-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
-  .outreach-item { background: var(--ink-800); border: 1px solid rgba(201, 161, 74, 0.1); padding: 0.75rem 1rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
-  .outreach-item-info { flex: 1; }
-  .outreach-item-name { font-size: 0.875rem; color: var(--paper-50); margin-bottom: 0.25rem; }
-  .outreach-item-status { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--gold-500); text-transform: uppercase; letter-spacing: 0.05em; }
-  .outreach-item-actions { display: flex; gap: 0.35rem; }
-  .outreach-item-btn { background: transparent; color: var(--paper-100); border: 1px solid rgba(201, 161, 74, 0.3); border-radius: 4px; padding: 0.25rem 0.5rem; font-size: 0.6875rem; cursor: pointer; transition: all 0.2s; }
-  .outreach-item-btn:hover { border-color: var(--gold-500); color: var(--gold-400); }
-  .outreach-item-btn.remove { color: var(--terracotta); border-color: var(--terracotta); }
-  .outreach-item-btn.remove:hover { background: var(--terracotta); color: var(--ink-900); }
-  .outreach-empty { text-align: center; padding: 2rem; color: var(--paper-100); opacity: 0.6; }
+  /* Toast for copy notifications */
+  .copy-toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--gold-500); color: var(--ink-900); padding: 1rem 1.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; font-weight: 600; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); opacity: 0; transform: translateY(20px); transition: all 0.3s; pointer-events: none; z-index: 9999; }
+  .copy-toast.show { opacity: 1; transform: translateY(0); }
 
-  /* Add to Pipeline button on each card */
-  .add-to-pipeline { position: absolute; bottom: 0.75rem; right: 0.75rem; background: rgba(15, 30, 28, 0.85); backdrop-filter: blur(4px); color: var(--sage-soft); border: 1px solid var(--sage-soft); border-radius: 4px; padding: 0.3rem 0.55rem; font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; z-index: 4; transition: all 0.2s; }
-  .add-to-pipeline:hover { background: var(--sage-soft); color: var(--ink-900); }
-  .add-to-pipeline.added { background: var(--sage-soft); color: var(--ink-900); }
+  /* ─── TOP SITIOS SECTION ─── */
+  .top-sites-section { background: var(--ink-800); }
+  .top-criteria { background: rgba(201, 161, 74, 0.08); border-left: 3px solid var(--gold-500); padding: 0.75rem 1rem; margin: 1.5rem 0 2rem; font-size: 0.875rem; color: var(--paper-100); }
+  .top-tier-header { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 2.5rem 0 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(201, 161, 74, 0.2); }
+  .tier-a-header { color: var(--gold-400); }
+  .tier-b-header { color: var(--sage-soft); }
+  .tier-c-header { color: var(--terracotta); }
+  .top-tier-desc { color: var(--paper-100); font-size: 0.875rem; margin-bottom: 1.25rem; opacity: 0.8; }
+  .top-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1rem; }
+  .top-card { background: var(--ink-900); border: 1px solid rgba(201, 161, 74, 0.1); padding: 1.25rem; border-radius: 4px; transition: all 0.2s; }
+  .top-card:hover { border-color: var(--gold-500); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+  .top-card.tier-a { border-left: 3px solid var(--gold-500); }
+  .top-card.tier-b { border-left: 3px solid var(--sage-soft); }
+  .top-card.tier-c { border-left: 3px solid var(--terracotta); }
+  .top-card-tier { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .top-card-name { font-family: 'Fraunces', serif; font-size: 1.125rem; margin: 0 0 0.75rem 0; }
+  .top-card-name a { color: var(--paper-50); text-decoration: none; }
+  .top-card-name a:hover { color: var(--gold-400); }
+  .top-card-meta { font-size: 0.8125rem; color: var(--paper-100); line-height: 1.6; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(201, 161, 74, 0.08); }
+  .top-card-meta strong { color: var(--gold-400); }
+  .top-card-why, .top-card-steps { font-size: 0.8125rem; color: var(--paper-100); line-height: 1.6; margin-bottom: 0.5rem; }
+  .top-card-why strong, .top-card-steps strong { color: var(--gold-400); }
+  .top-card-why { font-style: italic; opacity: 0.9; }
+  @media (max-width: 600px) {
+    .top-grid { grid-template-columns: 1fr; }
+    .top-tier-header { font-size: 0.75rem; }
+  }
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(10, 20, 18, 0.85); backdrop-filter: blur(8px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 2rem; overflow-y: auto; }
   .modal-overlay.open { display: flex; }
@@ -1080,7 +1091,7 @@
     <a href="#legend">Cómo leer</a>
     <a href="#catalog">Catálogo</a>
     <a href="#payouts">Eventos pagos</a>
-    <a href="#payouts">Payouts</a>
+    <a href="#top">Top sitios</a>
   </div>
   <a href="#catalog" class="nav-cta-mini">Ver 120+ sitios</a>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
@@ -1107,7 +1118,7 @@
   <div class="hero-content">
     <div class="hero-meta">
       <span class="hero-meta-line"></span>
-      <span class="mono">Speaker Resources · 2026 · v12 (modal enriquecido + search + outreach + logo + estrategia + verification)</span>
+      <span class="mono">Speaker Resources · 2026 · v13 (no localStorage + tab Top sitios + clipboard pipeline)</span>
     </div>
     <h1>
       El <em>catálogo</em><br>
@@ -1486,7 +1497,7 @@
       </div>
       <div class="filter-bar-bottom">
         <input type="text" class="filter-search" id="filterSearch" placeholder="🔍 Buscar sitio por nombre o descripción..." />
-        <button class="outreach-toggle" id="outreachToggle" onclick="toggleOutreachPanel()" type="button">📋 Mi Pipeline (<span id="outreachCount">0</span>)</button>
+        <button class="outreach-toggle" id="outreachToggle" onclick="copyCurrentPipeline()" type="button">📋 Copiar pitch</button>
       </div>
 
       <div class="filter-panel" id="filterPanel">
@@ -1531,6 +1542,318 @@
         Mostrando <strong>120+</strong> sitios · <strong>12</strong> speakers
       </div>
     </div>
+
+    
+    <!-- TOP SITIOS - Priorizados estrategicamente -->
+    <section id="top" class="top-sites-section">
+      <div class="container">
+        <div class="section-label">
+          <span class="section-label-num">★</span>
+          <span class="section-label-line"></span>
+          <span class="mono">Top 25 sitios priorizados</span>
+        </div>
+        <h2 class="section-title">Por donde <em>empezar</em> — Top 25 estrategicos</h2>
+        <p class="section-intro" style="margin-top: 1.5rem;">
+          Los 25 sitios con mejor balance entre <strong>facilidad de entrada, pago probable, y match con nuestros speakers</strong>. Estrategia priorizada para que Jhon (o quien aplique) sepa por donde arrancar esta semana. <strong>Solo US</strong>, no apuntamos a top globales imposibles (TED, Davos) que requieren años de posicionamiento.
+        </p>
+
+        <div class="top-criteria">
+          <strong>Criterios estrategicos:</strong> US-based o US-relevant · Pago $$+ (no solo exposure) · Dificultad 1-4/5 (no imposibles) · Match con al menos un speaker · CFP abierto o proceso accesible · Track record comprobable
+        </div>
+
+        <h3 class="top-tier-header tier-a-header">★★★ TIER A — Alta prioridad (10 sitios, esta semana)</h3>
+        <p class="top-tier-desc">Los primeros que Jhon deberia atacar. Match fuerte, CFP abierto, pago real, dificultad baja-media.</p>
+        <div class="top-grid">
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://premierespeakers.com/christian" target="_blank" rel="noopener">Premiere Speakers Bureau ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Dr. Meade, Angie, Patricio</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 2-4 weeks</div>
+            <div><strong>Pago típico:</strong> $$$ $10K-50K+</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Established agency, fast turnaround, fee 20-30% pero bookings inbound</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Submit online form. Necesitas: media kit, demo reel, past clients, unique niche. Si no tienes 50+ gigs, mejor directory primero.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://www.allamericanspeakers.com/" target="_blank" rel="noopener">All American Speakers ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Dr. Meade, Angie, Alex, Patricio</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 2-4 weeks</div>
+            <div><strong>Pago típico:</strong> $$$ $5K-30K+</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Mas grande que Premiere. Acepta nuevos speakers con track record. Inbound leads post-listado.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Click "Add or Update Talent Profile". Necesitas: bio, fee range, demo video, past gigs. Tu perfil aparece en busquedas de planners.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://anitab.org/topala/" target="_blank" rel="noopener">AnitaB.org Topala ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Kelly, Kimberly, Philip</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 6-8 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $2K-10K + travel</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Top women in tech. Speaker CFP anual. Match directo con Kelly/Kimberly/Philip.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Aplica via su CFP (abre Q1 cada ano). Necesitas: talk sobre tech equity / leadership / career. Review por advisory board.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://worthywomansummit.com/speaker-application/" target="_blank" rel="noopener">Worthy Woman Summit 2026 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Angelie, Evelena</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 2-4 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K + travel</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Christian women, spaces limited, directo fit con Angie/Angelie. Evento en Mississippi.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Fill online application. Necesitas: 200-word bio, talk title, 50-word abstract, photo. Christian women focus mandatory.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://www.ifgathering.com/speaking-inquiry/" target="_blank" rel="noopener">IF:Gathering 2027 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Angelie, Evelena</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 4-8 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $1K-5K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Top faith women brand. Curated. Network effect. Si entras, abres muchas puertas.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Submit inquiry form. Necesitas: assistant contact, daily rate, familiaridad con IF. Curated by Jodie Berndt.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://www.shespeaksconference.com/" target="_blank" rel="noopener">She Speaks Conference ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Angelie</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 2-4 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Christian women communicators. Lilydale NC. Match con Angie/Angelie.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via website. Necesitas: 3 talk ideas, 1 sample teaching video. Annual submission window (Q1).</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://www.podmatch.com/" target="_blank" rel="noopener">PodMatch ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> TODOS</div>
+            <div><strong>Dificultad:</strong> 1/5 · <strong>Tiempo:</strong> 1 day</div>
+            <div><strong>Pago típico:</strong> $ Exposure (backlinks)</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Free media one-sheet. 60-80% acceptance if profile is strong. Multiplica tu reach 5-10x.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Sign up free. Completa: bio 50-200 palabras, 3-5 talking points, headshot, sample questions. Hosts te contactan o tu aplicas. Reliability score 80%+</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://saastr.ai/" target="_blank" rel="noopener">SaaStr AI Annual 2027 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Philip, Alex, Patricio, Russ</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 8-12 weeks</div>
+            <div><strong>Pago típico:</strong> $$$ Travel + $5K-10K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Largest B2B+AI conference. 300+ speakers, 15K+ attendees. Strong match con Philip/Alex.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via speaker page. Necesitas: tactical insights (no pitches), real case study. Specific topic + 1-line description.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://catalystleader.com/" target="_blank" rel="noopener">Catalyst Atlanta (faith) ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Jeff, Dr. Meade, Angie</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 6-10 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $2K-8K + travel</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> 8500+ next-gen leaders. Strong faith angle. Match con Jeff/Dr. Meade leadership.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Submit via website. Necesitas: leadership talk, faith alignment, church/ministry background. Annual event Atlanta.</div>
+        </div>
+        <div class="top-card tier-a">
+          <div class="top-card-tier" style="color: var(--gold-400);">★★★ TIER A</div>
+          <h3 class="top-card-name"><a href="https://www.wbenc.org/events/speaking-opportunities/" target="_blank" rel="noopener">WBENC Speaking ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Kimberly, Kelly, Angelie, Evelena, Patricio</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> Rolling</div>
+            <div><strong>Pago típico:</strong> $$ $1K-3K + expo</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Women Business Enterprise. Rolling CFP. National + regional events. Match women business speakers.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Submit interest form. Necesitas: WBENC cert (recomendado), women business focus, talk on leadership/entrepreneurship.</div>
+        </div>
+        </div>
+
+        <h3 class="top-tier-header tier-b-header">★★ TIER B — Media prioridad (10 sitios, este mes)</h3>
+        <p class="top-tier-desc">Para speakers con mas track record o despues de los Tier A.</p>
+        <div class="top-grid">
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.irelaunch.com/events/rtw-conference-may-2026-2" target="_blank" rel="noopener">iRelaunch Return to Work ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Kelly, Kimberly</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Women re-entering workforce. Kelly career reinvention perfect match. Virtual 3-day event.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via speaker page. Necesitas: career reinvention talk, women workforce focus, sample questions.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.reviveourhearts.com/events/true-woman-27/" target="_blank" rel="noopener">True Woman 27 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Angelie, Evelena</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 6-12 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $1K-3K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Nancy DeMoss Wolgemuth flagship. Indiana Convention Center. Strong faith women match.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via True Woman site. Necesitas: 3-5 talk ideas, bio, photo. Curated by committee.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.womenintechsummit.net/" target="_blank" rel="noopener">Women in Tech Summit 2027 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Kimberly, Kelly, Philip</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 6-8 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $1K-3K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Tech careers + leadership. Annual. Match con Kimberly (real estate tech), Philip (fintech).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> CFP open annually. Necesitas: tech leadership/career talk, women in tech focus, bio, photo.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.equip.org/events" target="_blank" rel="noopener">Equip Christian Leaders ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Jeff, Dr. Meade</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $1K-3K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Pastors + leaders. Annual. Match con Jeff (FCA/UF) y Dr. Meade (leadership).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via Equip.org. Necesitas: pastoral leadership talk, ministry background. Annual submission.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.salesforce.com/dreamforce/" target="_blank" rel="noopener">Salesforce Dreamforce 2026 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Philip, Alex</div>
+            <div><strong>Dificultad:</strong> 4/5 · <strong>Tiempo:</strong> 12-16 weeks</div>
+            <div><strong>Pago típico:</strong> $$$ Travel + $5K-15K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Mega conference. 100K+ attendees. Strong match Philip (CRM expert) y Alex (sales).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> CFP via Salesforce. Necesitas: Salesforce ecosystem expertise, customer success story. Apply 6-9 months ahead.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://rightnowconferences.org/" target="_blank" rel="noopener">RightNow Conference ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Jeff</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Faith. Multiple cities (Atlanta, etc). College-age focus. Match Angie (suicide survivor story).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via website. Necesitas: faith + relevant topic. Multi-city events = more chances.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.womeninsalessummit.com/" target="_blank" rel="noopener">Women in Sales Summit 2026 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Alex, Kelly</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-8 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $1K-3K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Sales leadership. Annual. Match Alex (sales) y Kelly (career pivots to sales).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> CFP via website. Necesitas: women in sales talk, leadership angle. Annual submission.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.c12group.com/" target="_blank" rel="noopener">C12 Group Annual ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Jeff, Dr. Meade, Russ</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 6-12 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $2K-5K + travel</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Christian CEOs/business. Peer groups + annual event. Match Russ (enterprise) y Jeff/Dr. Meade (Christian business).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via C12 site. Necesitas: business leadership, Christian worldview, enterprise experience.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.witi.com/" target="_blank" rel="noopener">WITI (Women in Technology) ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Kimberly, Kelly, Philip</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $ Exposure + network</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Women in tech network. Local + annual summit. High-value connections.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Join WITI (free/paid tier). Volunteer to speak at local events. Annual summit CFP.</div>
+        </div>
+        <div class="top-card tier-b">
+          <div class="top-card-tier" style="color: var(--sage-soft);">★★ TIER B</div>
+          <h3 class="top-card-name"><a href="https://www.arisewomensconference.com/" target="_blank" rel="noopener">ARISE Womens Conference ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Angelie, Evelena</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Faith women leaders. Annual. Match directo con Angie/Angelie/Evelena.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via website. Necesitas: faith women talk, 1-2 sample teachings, bio.</div>
+        </div>
+        </div>
+
+        <h3 class="top-tier-header tier-c-header">★ TIER C — Bonus (5 sitios, ongoing)</h3>
+        <p class="top-tier-desc">Oportunidades de bajo esfuerzo, alto volumen. Para mantener el pipeline siempre activo.</p>
+        <div class="top-grid">
+        <div class="top-card tier-c">
+          <div class="top-card-tier" style="color: var(--terracotta);">★ TIER C</div>
+          <h3 class="top-card-name"><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn Audio Events (per speaker) ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> TODOS</div>
+            <div><strong>Dificultad:</strong> 1/5 · <strong>Tiempo:</strong> 1 day</div>
+            <div><strong>Pago típico:</strong> $ Exposure (massive)</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Free, easy, each speaker can host own event. Builds authority. No barrier to entry.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Each speaker: schedule Audio Event, invite network. Topic aligned with their niche. Repeat 1-2x/month.</div>
+        </div>
+        <div class="top-card tier-c">
+          <div class="top-card-tier" style="color: var(--terracotta);">★ TIER C</div>
+          <h3 class="top-card-name"><a href="https://www.meetup.com/topics/professional-womens-networking-group/" target="_blank" rel="noopener">Local meetups (Meetup.com) ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> TODOS</div>
+            <div><strong>Dificultad:</strong> 1/5 · <strong>Tiempo:</strong> 1 week</div>
+            <div><strong>Pago típico:</strong> $0-500 (mostly free)</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Track record builder. 10 talks = 10 bullets in bio. Easy to get.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Search local groups by topic. Contact organizer. Offer 30-min talk. No fee first time.</div>
+        </div>
+        <div class="top-card tier-c">
+          <div class="top-card-tier" style="color: var(--terracotta);">★ TIER C</div>
+          <h3 class="top-card-name"><a href="https://www.makers.com/" target="_blank" rel="noopener">MAKERS Conference 2027 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Kelly, Kimberly</div>
+            <div><strong>Dificultad:</strong> 3/5 · <strong>Tiempo:</strong> 6-8 weeks</div>
+            <div><strong>Pago típico:</strong> $$$ Curated</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Women leadership movement. High prestige. If selected, big brand boost.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via MAKERS site. Necesitas: women leadership talk, social impact, original perspective. Curated.</div>
+        </div>
+        <div class="top-card tier-c">
+          <div class="top-card-tier" style="color: var(--terracotta);">★ TIER C</div>
+          <h3 class="top-card-name"><a href="https://churchcommunications.com/" target="_blank" rel="noopener">Church Communications Conference ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Jeff, Dr. Meade</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Church communications + leadership. Match Jeff (FCA/UF) y Dr. Meade (leadership).</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via website. Necesitas: church leadership/communications talk, ministry background.</div>
+        </div>
+        <div class="top-card tier-c">
+          <div class="top-card-tier" style="color: var(--terracotta);">★ TIER C</div>
+          <h3 class="top-card-name"><a href="https://www.femcollective.com/" target="_blank" rel="noopener">Femcollective Summit 2026 ↗</a></h3>
+          <div class="top-card-meta">
+            <div><strong>Fit:</strong> Angie, Kelly, Kimberly, Evelena</div>
+            <div><strong>Dificultad:</strong> 2/5 · <strong>Tiempo:</strong> 4-6 weeks</div>
+            <div><strong>Pago típico:</strong> $$ $500-2K</div>
+          </div>
+          <div class="top-card-why"><strong>Por que es estrategico:</strong> Women in business community + summit. Match con Angie/Kelly/Kimberly/Evelena.</div>
+          <div class="top-card-steps"><strong>Como aplicar:</strong> Apply via FemCollective. Necesitas: women business/entrepreneurship talk. Community + event.</div>
+        </div>
+        </div>
+
+      </div>
+    </section>
+
 
     <!-- CAT 1: CFP / Discovery -->
     <div class="cat-block" data-speakers="AP PM PL AK KA KW PC RK JF ED AB RS">
@@ -3910,7 +4233,7 @@
   </div>
   <div class="footer-bottom">
     <div>© 2026 SpeakUp Express · Orlando FL · Curated by Mavis</div>
-    <div>Built for Jhon · SMM SpeakUp Express · v12.0 (modal enriquecido + search + outreach + logo + estrategia + verification)</div>
+    <div>Built for Jhon · SMM SpeakUp Express · v13 (no localStorage + tab Top sitios + clipboard pipeline)</div>
   </div>
 </footer>
 
@@ -4244,36 +4567,45 @@
       }
       document.getElementById('modalOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
-
-      // Reset pipeline button state
-      const pipelineBtn = document.getElementById('modalAddToPipeline');
-      const outreach = loadOutreach();
-      if (pipelineBtn) {
-        if (outreach[href]) {
-          pipelineBtn.textContent = '✓ En pipeline';
-          pipelineBtn.classList.add('added');
-          pipelineBtn.disabled = true;
-        } else {
-          pipelineBtn.textContent = '+ Pipeline';
-          pipelineBtn.classList.remove('added');
-          pipelineBtn.disabled = false;
-        }
-      }
     } catch (err) {
       console.error('openCardModal error:', err);
     }
   }
 
-  // Add current modal site to pipeline
+  // Add current modal site to pipeline (copies to clipboard)
   function addCurrentToPipeline() {
     const visitBtn = document.getElementById('modalVisitBtn');
     const title = document.getElementById('modalTitle');
+    const pitchEl = document.getElementById('modalPitch');
+    const flowEl = document.getElementById('modalFlowType');
+    const reqEl = document.getElementById('modalRequirements');
+    const respEl = document.getElementById('modalResponseTime');
+    const succEl = document.getElementById('modalSuccessRate');
     if (!visitBtn) return;
     const url = visitBtn.getAttribute('href') || '#';
     const name = title ? title.textContent : 'Sitio';
-    if (addToOutreach(name, url, 'modal')) {
-      const btn = document.getElementById('modalAddToPipeline');
-      if (btn) { btn.textContent = '✓ En pipeline'; btn.classList.add('added'); btn.disabled = true; }
+
+    let text = '=== ' + name + ' ===\n';
+    text += 'URL: ' + url + '\n';
+    if (flowEl) text += 'Tipo: ' + flowEl.textContent + '\n';
+    if (respEl) text += 'Response time: ' + respEl.textContent + '\n';
+    if (succEl) text += 'Success rate: ' + succEl.textContent + '\n';
+    if (reqEl) {
+      const reqs = Array.from(reqEl.querySelectorAll('li')).map(function(li) { return '  - ' + li.textContent; }).join('\n');
+      if (reqs) text += 'Requisitos:\n' + reqs + '\n';
+    }
+    if (pitchEl && pitchEl.textContent !== '—') {
+      text += '\nPITCH TEMPLATE:\n"' + pitchEl.textContent + '"\n';
+    }
+    text += '\n--- SpeakUp Express Speaker Resources ---';
+
+    copyToClipboard(text, 'Info de ' + name + ' copiada');
+
+    const btn = document.getElementById('modalAddToPipeline');
+    if (btn) {
+      const oldText = btn.textContent;
+      btn.textContent = '✓ Copiado';
+      setTimeout(function() { btn.textContent = oldText; }, 2000);
     }
   }
 
@@ -4358,93 +4690,50 @@
     }
   }
 
-  // ─── OUTREACH TRACKER (localStorage) ───
-  const OUTREACH_KEY = 'speakup_outreach_v1';
-  function loadOutreach() {
-    try { return JSON.parse(localStorage.getItem(OUTREACH_KEY) || '{}'); } catch (e) { return {}; }
-  }
-  function saveOutreach(data) {
-    try { localStorage.setItem(OUTREACH_KEY, JSON.stringify(data)); } catch (e) {}
-  }
-  function addToOutreach(name, url, source) {
-    const data = loadOutreach();
-    if (data[url]) return false; // ya existe
-    data[url] = { name: name, url: url, status: 'interested', added: new Date().toISOString(), source: source || 'manual' };
-    saveOutreach(data);
-    renderOutreach();
-    return true;
-  }
-  function removeFromOutreach(url) {
-    const data = loadOutreach();
-    delete data[url];
-    saveOutreach(data);
-    renderOutreach();
-  }
-  function updateOutreachStatus(url, status) {
-    const data = loadOutreach();
-    if (data[url]) { data[url].status = status; data[url].updated = new Date().toISOString(); }
-    saveOutreach(data);
-    renderOutreach();
-  }
-  function clearAllOutreach() {
-    if (confirm('Borrar todo el pipeline? Esta accion no se puede deshacer.')) {
-      localStorage.removeItem(OUTREACH_KEY);
-      renderOutreach();
+  // ─── PIPELINE HELPER (clipboard only) ───
+  // Just copies site info to clipboard so the team can share via Slack/email.
+  function copyCurrentPipeline() {
+    const modalTitle = document.getElementById('modalTitle');
+    if (modalTitle) {
+      // If modal is open, copy the modal info
+      addCurrentToPipeline();
+    } else {
+      // If no modal, copy a summary of how to use the catalog
+      const text = 'SpeakUp Express Speaker Resources\n' +
+        'Speakers: ' + document.querySelectorAll('.speaker-card').length + '\n' +
+        'Sitios en catalogo: ' + document.querySelectorAll('.cat-card').length + '\n' +
+        'Sitios verificados con modal: click en cualquier + INFO en el catalogo.\n' +
+        'Estrategia de outreach: docs/OUTREACH-STRATEGY.md';
+      copyToClipboard(text, 'Resumen copiado al clipboard');
     }
   }
-  function renderOutreach() {
-    const data = loadOutreach();
-    const list = document.getElementById('outreachList');
-    const countEl = document.getElementById('outreachCount');
-    const statsEl = document.getElementById('outreachStats');
-    const toggle = document.getElementById('outreachToggle');
-    const entries = Object.values(data);
-    const total = entries.length;
-    if (countEl) countEl.textContent = total;
-    if (toggle) toggle.classList.toggle('has-items', total > 0);
-    if (statsEl) {
-      const s = {interested:0, applied:0, booked:0, rejected:0};
-      entries.forEach(function(e) { s[e.status] = (s[e.status] || 0) + 1; });
-      statsEl.textContent = 'Interested: ' + s.interested + ' · Applied: ' + s.applied + ' · Booked: ' + s.booked + ' · Rejected: ' + s.rejected;
-    }
-    if (!list) return;
-    if (total === 0) {
-      list.innerHTML = '<div class="outreach-empty">Tu pipeline esta vacio. Click en "+ Pipeline" en cualquier card para agregarlo.</div>';
-      return;
-    }
-    list.innerHTML = entries.map(function(e) {
-      return '<div class="outreach-item">' +
-        '<div class="outreach-item-info">' +
-        '<div class="outreach-item-name">' + e.name + '</div>' +
-        '<div class="outreach-item-status">' + e.status + ' · ' + (e.added ? new Date(e.added).toLocaleDateString() : '') + '</div>' +
-        '</div>' +
-        '<div class="outreach-item-actions">' +
-        '<button class="outreach-item-btn" onclick="updateOutreachStatus(\'' + e.url + '\', \'applied\')" title="Marcar Applied">A</button>' +
-        '<button class="outreach-item-btn" onclick="updateOutreachStatus(\'' + e.url + '\', \'booked\')" title="Marcar Booked">B</button>' +
-        '<button class="outreach-item-btn" onclick="updateOutreachStatus(\'' + e.url + '\', \'rejected\')" title="Marcar Rejected">R</button>' +
-        '<a class="outreach-item-btn" href="' + e.url + '" target="_blank" title="Abrir">↗</a>' +
-        '<button class="outreach-item-btn remove" onclick="removeFromOutreach(\'' + e.url + '\')" title="Quitar">×</button>' +
-        '</div>' +
-        '</div>';
-    }).join('');
-  }
-  function toggleOutreachPanel() {
-    const panel = document.getElementById('outreachPanel');
-    if (panel) panel.classList.toggle('open');
-  }
-  function addCardToPipeline(btn) {
-    const card = btn.closest('.cat-card');
-    if (!card) return;
-    const name = card.querySelector('.cat-card-name')?.textContent.replace('↗', '').trim() || 'Sitio';
-    const url = card.getAttribute('href') || '#';
-    if (addToOutreach(name, url, 'card')) {
-      btn.textContent = '✓ En pipeline';
-      btn.classList.add('added');
+  function copyToClipboard(text, msg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showToast(msg || 'Copiado');
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      showToast(msg || 'Copiado');
     }
   }
-  // Initialize on load
-  document.addEventListener('DOMContentLoaded', renderOutreach);
-  if (document.readyState !== 'loading') renderOutreach();
+  function showToast(msg) {
+    let toast = document.getElementById('copyToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'copyToast';
+      toast.className = 'copy-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 2500);
+  }
 
   // Search bar enter key: scroll to first match
   if (searchInput) {
@@ -4535,27 +4824,15 @@
     </div>
     <div class="modal-footer">
       <button class="modal-btn modal-btn-secondary modal-close">Cerrar</button>
-      <button class="modal-btn modal-btn-secondary" id="modalAddToPipeline" onclick="addCurrentToPipeline()" type="button">+ Pipeline</button>
+      <button class="modal-btn modal-btn-secondary" id="modalAddToPipeline" onclick="addCurrentToPipeline()" type="button">📋 Copiar info</button>
       <a href="#" id="modalVisitBtn" target="_blank" class="modal-btn modal-btn-primary">Ir al sitio ↗</a>
     </div>
   </div>
 </div>
 
-<!-- OUTREACH PANEL -->
-<div class="outreach-panel" id="outreachPanel">
-  <div class="outreach-header">
-    <h3>📋 Mi Pipeline de Outreach</h3>
-    <div>
-      <span id="outreachStats" style="margin-right: 1rem; color: var(--paper-100); font-size: 0.875rem;"></span>
-      <button onclick="clearAllOutreach()" style="background: transparent; color: var(--terracotta); border: 1px solid var(--terracotta); border-radius: 4px; padding: 0.4rem 0.85rem; font-size: 0.75rem; cursor: pointer;">Limpiar todo</button>
-      <button onclick="toggleOutreachPanel()" style="background: transparent; color: var(--paper-100); border: 1px solid rgba(201, 161, 74, 0.3); border-radius: 4px; padding: 0.4rem 0.85rem; font-size: 0.75rem; cursor: pointer; margin-left: 0.5rem;">Cerrar ✕</button>
-    </div>
-  </div>
-  <div class="outreach-list" id="outreachList"></div>
-</div>
-
 </body>
 </html>
+
 
 
 
