@@ -28,6 +28,7 @@ logs/
 *.backup
 *.tmp
 *.swp
+index.html.backup*
 
 # Validation artifacts
 validation.png
@@ -35,6 +36,10 @@ _validate.py
 __pycache__/
 *.pyc
 *.pyo
+
+# Temporary build/refactor scripts (Mavis _*.mjs)
+_*.mjs
+!_check-js.mjs
 
 # Environment / secrets
 .env
