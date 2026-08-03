@@ -886,32 +886,6 @@
   /* ─── BEST PRACTICES ─── */
 
   /* ─── FEE CALCULATOR ─── */
-  .fee-calc-section { background: var(--ink-900); padding: 5rem 0; border-top: 1px solid var(--ink-700); }
-  .fee-calc-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2rem; margin-top: 2.5rem; }
-  .fee-calc-inputs { display: flex; flex-direction: column; gap: 1.25rem; }
-  .fee-input-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .fee-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold-400); font-weight: 500; }
-  .fee-hint { font-size: 0.6875rem; text-transform: none; color: var(--paper-100); opacity: 0.6; font-weight: 400; }
-  .fee-select, .fee-input { background: var(--ink-800); border: 1px solid var(--ink-700); color: var(--paper-50); padding: 0.7rem 0.875rem; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; transition: border-color 0.2s; }
-  .fee-select:focus, .fee-input:focus { outline: none; border-color: var(--gold-500); }
-  .fee-calc-output { background: var(--ink-800); border: 1px solid var(--gold-500); border-radius: 12px; padding: 2rem; }
-  .fee-output-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--paper-100); margin-bottom: 1rem; }
-  .fee-output-range { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-  .fee-range-low, .fee-range-mid, .fee-range-high { text-align: center; padding: 1rem 0.5rem; background: var(--ink-900); border-radius: 8px; border: 1px solid var(--ink-700); }
-  .fee-range-mid { border-color: var(--gold-500); background: rgba(201, 161, 74, 0.05); }
-  .fee-range-amt { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--paper-50); font-weight: 500; line-height: 1.1; }
-  .fee-range-mid .fee-range-amt { color: var(--gold-400); font-size: 1.75rem; }
-  .fee-range-tier { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: var(--paper-100); opacity: 0.7; margin-top: 0.25rem; }
-  .fee-net-to-speaker { padding: 1rem 1.25rem; background: linear-gradient(135deg, rgba(138, 171, 120, 0.1), rgba(201, 161, 74, 0.05)); border: 1px solid var(--sage-soft); border-radius: 8px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-  .fee-net-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; color: var(--paper-50); }
-  .fee-net-amt { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--sage-soft); font-weight: 500; }
-  .fee-breakdown { padding: 1rem 1.25rem; background: var(--ink-900); border-radius: 8px; border: 1px solid var(--ink-700); margin-bottom: 1.5rem; }
-  .fee-breakdown-title { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; text-transform: uppercase; color: var(--gold-400); margin-bottom: 0.75rem; letter-spacing: 0.05em; }
-  .fee-bd-row { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.875rem; color: var(--paper-50); font-family: 'JetBrains Mono', monospace; }
-  .fee-bd-row span:last-child { color: var(--gold-400); }
-  .fee-bd-total { border-top: 1px solid var(--ink-700); margin-top: 0.5rem; padding-top: 0.625rem; font-weight: 600; }
-  .fee-disclaimer { padding: 1rem 1.25rem; background: rgba(196, 122, 90, 0.08); border-left: 3px solid var(--terracotta); border-radius: 6px; font-size: 0.8125rem; color: var(--paper-50); line-height: 1.55; }
-  .fee-disclaimer strong { color: var(--terracotta); }
 
   /* ─── COMPARISON ─── */
   .comparison-section { background: var(--ink-800); padding: 5rem 0; border-top: 1px solid var(--ink-700); }
@@ -1095,7 +1069,6 @@
     /* Best practices: still 2 cols */
 
     /* Fee calc: stack */
-    .fee-calc-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 
     /* Comparison: still 2 cols */
     .comparison-grid { grid-template-columns: 1fr; }
@@ -1137,13 +1110,6 @@
     /* Best practices: 1 col */
 
     /* Fee calc */
-    .fee-calc-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-    .fee-calc-output { padding: 1.25rem; }
-    .fee-output-range { grid-template-columns: 1fr; gap: 0.5rem; }
-    .fee-range-amt { font-size: 1.25rem; }
-    .fee-range-mid .fee-range-amt { font-size: 1.5rem; }
-    .fee-input-group { gap: 0.3rem; }
-    .fee-select, .fee-input { font-size: 0.875rem; padding: 0.6rem 0.75rem; }
 
     /* Comparison: 1 col */
     .comparison-grid { grid-template-columns: 1fr; }
@@ -1155,11 +1121,10 @@
     .heatmap-grid { min-width: 600px; }
 
     /* Section padding */
-    .stats-section, .calendar-section, .glossary-section, .fee-calc-section, .comparison-section, .heatmap-section { padding: 3rem 1rem; }
+    .stats-section, .calendar-section, .glossary-section, .comparison-section, .heatmap-section { padding: 3rem 1rem; }
 
     /* Section titles */
-    .stats-section h2, .calendar-section h2, .glossary-section h2 h2, .fee-calc-section h2, .comparison-section h2, .heatmap-section h2 { font-size: 1.75rem; }
-    .fee-calc-section h3 { font-size: 1.125rem; }
+    .stats-section h2, .calendar-section h2, .glossary-section h2 h2, .comparison-section h2, .heatmap-section h2 { font-size: 1.75rem; }
 
     /* Nav theme toggle space */
     .theme-toggle { width: 32px; height: 32px; }
@@ -1172,15 +1137,12 @@
     .stats-table { font-size: 0.6875rem; }
     .calendar-month { padding: 0.75rem; }
     .glossary-item { padding: 0.875rem; }
-    .fee-calc-output { padding: 1rem; }
-    .fee-range-amt { font-size: 1.125rem; }
-    .fee-range-mid .fee-range-amt { font-size: 1.25rem; }
     .comp-card { padding: 1rem; }
     .heatmap-grid { min-width: 500px; }
   }
 
   /* Global overflow safety: prevent any section from breaking viewport */
-  .stats-section, .calendar-section, .glossary-section, .fee-calc-section, .comparison-section, .heatmap-section,
+  .stats-section, .calendar-section, .glossary-section, .comparison-section, .heatmap-section,
   .payout-section, .mapping, .legend, .roster, .top-sites-section, .profiles-section {
     overflow-x: hidden;
     max-width: 100vw;
@@ -2097,82 +2059,6 @@
     
 
     
-
-<!-- FEE CALCULATOR -->
-<section id="fee-calc" class="fee-calc-section">
-  <div class="container">
-    <div class="section-label">
-      <span class="section-label-num">💰</span>
-      <span class="section-label-line"></span>
-      <span class="mono">Fee calculator · sanity check para pitches</span>
-    </div>
-    <h2 class="section-title">Cuánto <em>deberías</em> cobrar</h2>
-    <p class="section-intro" style="margin-top: 1.5rem;">Tool interactivo. 4 inputs → rango de fee recomendado con desglose. <strong style="color: var(--terracotta);">Es un baseline, no un contract.</strong> Usá esto como floor, no como ceiling. Tu fee real depende de negociación.</p>
-
-    <div class="fee-calc-grid">
-      <div class="fee-calc-inputs">
-        <div class="fee-input-group">
-          <label class="fee-label">Vertical</label>
-          <select id="calcVertical" class="fee-select">
-            <option value="faith" selected>Faith / Christian</option>
-            <option value="business">Business / Corporate</option>
-            <option value="tech">Tech / SaaS</option>
-            <option value="wellness">Wellness / Health</option>
-            <option value="women">Women-focused</option>
-            <option value="finance">Finance / Trading</option>
-            <option value="realestate">Real Estate</option>
-            <option value="mental">Mental Health / Suicide Prev</option>
-          </select>
-        </div>
-        <div class="fee-input-group">
-          <label class="fee-label">Tipo de evento</label>
-          <select id="calcType" class="fee-select">
-            <option value="keynote" selected>Keynote (30-60 min)</option>
-            <option value="workshop">Workshop (2-4h)</option>
-            <option value="breakout">Breakout (30-45 min)</option>
-            <option value="panel">Panel</option>
-            <option value="podcast">Podcast guest</option>
-          </select>
-        </div>
-        <div class="fee-input-group">
-          <label class="fee-label">Audiencia esperada <span class="fee-hint">(asistentes in-person o descargas/mes)</span></label>
-          <input type="number" id="calcAudience" class="fee-input" value="500" min="0" step="50">
-        </div>
-        <div class="fee-input-group">
-          <label class="fee-label">Nivel de experiencia</label>
-          <select id="calcLevel" class="fee-select">
-            <option value="emerging">Emerging (&lt;5 talks)</option>
-            <option value="established" selected>Established (5-50 talks)</option>
-            <option value="toptier">Top-tier (50+ talks)</option>
-          </select>
-        </div>
-        <div class="fee-input-group">
-          <label class="fee-label">Bureau / commission</label>
-          <select id="calcBureau" class="fee-select">
-            <option value="0" selected>Self-managed (0%)</option>
-            <option value="0.25">Bureau (25%)</option>
-            <option value="0.3">Bureau premium (30%)</option>
-          </select>
-        </div>
-      </div>
-      <div class="fee-calc-output">
-        <div class="fee-output-label">Tu fee recomendado</div>
-        <div class="fee-output-range">
-          <div class="fee-range-low"><div class="fee-range-amt" id="feeLow">$800</div><div class="fee-range-tier">Low (P10)</div></div>
-          <div class="fee-range-mid"><div class="fee-range-amt" id="feeMid">$3,500</div><div class="fee-range-tier">Mid (P50)</div></div>
-          <div class="fee-range-high"><div class="fee-range-amt" id="feeHigh">$12,000</div><div class="fee-range-tier">High (P90)</div></div>
-        </div>
-        <div class="fee-net-to-speaker">
-          <div class="fee-net-label">Net to speaker <span class="fee-hint">(después de commission)</span></div>
-          <div class="fee-net-amt" id="feeNet">$3,500</div>
-        </div>
-        <div class="fee-disclaimer">
-          <strong>Disclaimer:</strong> Baseline, multiplicadores y rangos son agregados de GSA Speaker Index + Bizzabo 2025. No incluyen travel, rider, ni A/V. Si tenés bureau, el net ya refleja la commission. <strong>Tu fee real depende de nicho, organizer budget, urgency, y tu track record.</strong> Usá esto como sanity check, no como contract.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
     
 
